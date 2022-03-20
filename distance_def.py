@@ -1,8 +1,8 @@
-import sys, re
 # from input_check import getNotes
+import sys, re
 from interval_dict import key_dict, interval_dict, key_dict_extend
-from interval_dict import midi_dict, benchmark_dict, octave_dict
-from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
+from interval_dict import midi_dict, benchmark_dict, input_dict_2
+# from interval_dict import major_quality_dict, perfect_quality_dict, octave_dict
 
 def distance(low_note, top_note):
 

@@ -1,7 +1,7 @@
 import sys, re
-from interval_dict import key_dict, interval_dict, key_dict_extend
-from interval_dict import midi_dict, benchmark_dict, octave_dict
-from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
+from interval_dict import key_dict, key_dict_extend
+# from interval_dict import midi_dict, benchmark_dict, octave_dict, interval_dict
+# from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
 
 def step(low_note, top_note):
 
