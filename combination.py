@@ -76,6 +76,28 @@ def voice_range(full_list_result):
 
 ###########################################################
 
+# Screen by SAT interval (must within octave):
+def sat_octave(screened_result):
+    # Container:
+    temp_chord = []
+    legal_chord = []
+    # Iteration:
+    for i in range(len(screened_result)):
+        temp_chord = screened_result[i]
+        for j in range(2, len(temp_chord)):
+            top_note_midi = midi_num[temp_chord[j]]
+            low_note_midi = midi_num[temp_chord[j - 1]]
+            if top_note_midi - low_note_midi <= 12:
+                if j == 3:
+                    legal_chord.append(temp_chord)
+                else:
+                    continue
+            else:
+                break
+    return legal_chord
+
+###########################################################
+
 # [FIRST CHORD ONLY] Remove the chord have doubles:
 def remove_double(screened_result):
     # Container:

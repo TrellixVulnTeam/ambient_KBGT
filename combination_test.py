@@ -9,6 +9,7 @@ from distance_def import distance
 from combination import note_range_zip
 from combination import ascending_order
 from combination import voice_range
+from combination import sat_octave
 from combination import remove_double
 from combination import ideal_chord
 from combination import find_structure
@@ -34,6 +35,7 @@ chord = [['c', 'e', 'g', 'b'], ['c', 'e', 'b', 'g'], ['c', 'g', 'e', 'b'], ['c',
 full_list = note_range_zip(chord, register)
 full_list_result = ascending_order(full_list)
 screened_result = voice_range(full_list_result)
+legal_chord = sat_octave(screened_result)
 
 # First chord only:
 screened_result_2 = remove_double(screened_result)
@@ -43,27 +45,29 @@ open_chord = find_structure(good_chord)[1]
 first_chord = start_chord(good_chord)
 
 # Test (all chord):
-print(voice_range(ascending_order(note_range_zip(chord, register))))
-print(len(voice_range(ascending_order(note_range_zip(chord, register)))))
+# print(voice_range(ascending_order(note_range_zip(chord, register))))
+# print(len(voice_range(ascending_order(note_range_zip(chord, register)))))
 
 # Test (first chord):
-print(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register)))))))
-print(len(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register))))))))
+# print(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register)))))))
+# print(len(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register))))))))
 
 # Test:
-print(full_list)
+print('full_list: ' + str(full_list))
 print(len(full_list))
-print(full_list_result)
+print('full_list_result: ' + str(full_list_result))
 print(len(full_list_result))
-print(screened_result)
+print('screened_result: ' + str(screened_result))
 print(len(screened_result))
-print(screened_result_2)
+print('legal_chord: ' + str(legal_chord))
+print(len(legal_chord))
+print('screened_result_2: ' + str(screened_result_2))
 print(len(screened_result_2))
-print(good_chord)
+print('good_chord: ' + str(good_chord))
 print(len(good_chord))
-print(close_chord)
+print('close_chord: ' + str(close_chord))
 print(len(close_chord))
-print(open_chord)
+print('open_chord: ' + str(open_chord))
 print(len(open_chord))
-print(first_chord)
+print('first_chord: ' + str(first_chord))
 print(len(first_chord))
