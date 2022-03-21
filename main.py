@@ -2,7 +2,7 @@ from harmonizer import get_input, get_bass_line, chord_quality_scheme
 from harmonizer import spell_chord, note_combination
 from combination import note_range_zip, ascending_order, voice_range, remove_double
 from combination import ideal_chord, find_structure, start_chord
-from voicing import count_step, error_check, error_check_lite
+from voicing import count_step, error_check_lite, error_check
 
 from harmonizer_dict import pre_assign_register as pre
 
@@ -53,6 +53,7 @@ def main():
             if count_step(previous_chord, list[k]) < count_step (previous_chord, temp_best):
                 temp_best = list[k]
         chord_progression.append(temp_best)
+    print('\nbass_line_result: ' str(bass_line_result))
     print('\nchord_scheme: ' + str(chord_scheme))
     print('\nchord_progression: ' + str(chord_progression) + '\n')
     return chord_progression
