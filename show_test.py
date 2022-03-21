@@ -37,6 +37,7 @@ for j in range(len(chord_progression)):
 for k in range(len(bass_line)):
     part_2.append(note.Note(bass_line[k], type='whole'))
 
+# Visualize the score:
 score.insert(0, part_1)
 score.insert(0, part_2)
 score.show()

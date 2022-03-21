@@ -15,7 +15,6 @@ from combination import ideal_chord
 from combination import find_structure
 from combination import start_chord
 
-
 # Input_1:
 # register = [['2', '4', '4', '4'], ['3', '4', '5', '5']]
 # chord = [['c', 'c', 'e', 'g'], ['f', 'f', 'c', 'a']]
@@ -44,14 +43,6 @@ close_chord = find_structure(good_chord)[0]
 open_chord = find_structure(good_chord)[1]
 first_chord = start_chord(good_chord)
 
-# Test (all chord):
-# print(voice_range(ascending_order(note_range_zip(chord, register))))
-# print(len(voice_range(ascending_order(note_range_zip(chord, register)))))
-
-# Test (first chord):
-# print(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register)))))))
-# print(len(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register))))))))
-
 # Test:
 print('full_list: ' + str(full_list))
 print(len(full_list))
@@ -71,3 +62,11 @@ print('open_chord: ' + str(open_chord))
 print(len(open_chord))
 print('first_chord: ' + str(first_chord))
 print(len(first_chord))
+
+# Test (all chord):
+# print(voice_range(ascending_order(note_range_zip(chord, register))))
+# print(len(voice_range(ascending_order(note_range_zip(chord, register)))))
+
+# Test (first chord):
+# print(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register)))))))
+# print(len(start_chord(ideal_chord(remove_double(voice_range(ascending_order(note_range_zip(chord, register))))))))

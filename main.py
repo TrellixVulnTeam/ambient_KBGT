@@ -1,7 +1,7 @@
 from harmonizer import get_input, get_bass_line, chord_quality_scheme
 from harmonizer import spell_chord, note_combination
-from combination import note_range_zip, ascending_order, voice_range, remove_double
-from combination import ideal_chord, find_structure, start_chord
+from combination import note_range_zip, ascending_order, voice_range, sat_octave
+from combination import remove_double, ideal_chord, find_structure, start_chord
 from voicing import count_step, error_check_lite, error_check
 
 from harmonizer_dict import pre_assign_register as pre
@@ -24,6 +24,7 @@ def main():
         full_list = note_range_zip(chord, register)
         full_list_result = ascending_order(full_list)
         screened_result = voice_range(full_list_result)
+        legal_chord = sat_octave(screened_result)
         if i == 0:
             screened_result_2 = remove_double(screened_result)
             good_chord = ideal_chord(screened_result_2)
@@ -32,22 +33,22 @@ def main():
             first_chord = start_chord(good_chord)
             chord_progression.append(first_chord)
             continue
-        else:
+        else: # ???
             screened_result_2 = remove_double(screened_result)
             good_chord = ideal_chord(screened_result_2)
         # voicing function:
         candidate_chord = []
-        for j in range(len(screened_result)):
-            connection = [chord_progression[-1], screened_result[j]]
+        for j in range(len(legal_chord)):
+            connection = [chord_progression[-1], legal_chord[j]]
             if error_check_lite(connection) == True:
-                candidate_chord.append(screened_result[j])
+                candidate_chord.append(legal_chord[j])
         # Get the next chord:
         if len(candidate_chord) > 1:
             temp_best = candidate_chord[0]
             list = candidate_chord
         else:
-            temp_best = good_chord[0]
-            list = good_chord
+            temp_best = legal_chord[0]
+            list = legal_chord
         previous_chord = chord_progression[-1]
         for k in range(1, len(list)):
             if count_step(previous_chord, list[k]) < count_step (previous_chord, temp_best):
@@ -55,6 +56,7 @@ def main():
         chord_progression.append(temp_best)
     print('\nbass_line_result: ' + str(bass_line_result))
     print('\nchord_scheme: ' + str(chord_scheme))
+    print('\ngood_chord: ' + str(good_chord))
     print('\nchord_progression: ' + str(chord_progression) + '\n')
     return chord_progression, bass_line_result
 
