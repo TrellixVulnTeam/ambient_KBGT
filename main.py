@@ -6,11 +6,15 @@ from voicing import count_step, error_check_lite, error_check
 
 from harmonizer_dict import pre_assign_register as pre
 
+from timeit import default_timer as timer
+
 def main():
     # Output container:
     chord_progression = []
     # harmonizer functions:
     bass_line = get_input('\n' + 'Hello, please enter the bass line and separate by space: ')
+    # Start the timer: 
+    start = timer()
     bass_line_result = get_bass_line(bass_line)
     scheme = chord_quality_scheme(bass_line)
     chord_select = scheme[0]
@@ -24,18 +28,15 @@ def main():
         full_list = note_range_zip(chord, register)
         full_list_result = ascending_order(full_list)
         screened_result = voice_range(full_list_result)
+        screened_result_2 = remove_double(screened_result)
         legal_chord = sat_octave(screened_result)
+        good_chord = ideal_chord(screened_result_2)
         if i == 0:
-            screened_result_2 = remove_double(screened_result)
-            good_chord = ideal_chord(screened_result_2)
-            close_chord = find_structure(good_chord)[0]
-            open_chord = find_structure(good_chord)[1]
+            # close_chord = find_structure(good_chord)[0]
+            # open_chord = find_structure(good_chord)[1]
             first_chord = start_chord(good_chord)
             chord_progression.append(first_chord)
             continue
-        else: # ???
-            screened_result_2 = remove_double(screened_result)
-            good_chord = ideal_chord(screened_result_2)
         # voicing function:
         candidate_chord = []
         for j in range(len(legal_chord)):
@@ -57,7 +58,10 @@ def main():
     print('\nbass_line_result: ' + str(bass_line_result))
     print('\nchord_scheme: ' + str(chord_scheme))
     print('\ngood_chord: ' + str(good_chord))
-    print('\nchord_progression: ' + str(chord_progression) + '\n')
+    print('\nchord_progression: ' + str(chord_progression))
+    # End the timer:
+    end = timer()
+    print('\nRunning time:', str(end - start) + '\n')
     return chord_progression, bass_line_result
 
 if __name__ == '__main__':
