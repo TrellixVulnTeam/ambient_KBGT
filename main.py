@@ -56,7 +56,7 @@ def main():
     print('\nbass_line_result: ' + str(bass_line_result))
     print('\nchord_scheme: ' + str(chord_scheme))
     print('\nchord_progression: ' + str(chord_progression) + '\n')
-    return chord_progression
+    return chord_progression, bass_line_result
 
 if __name__ == '__main__':
     main()
