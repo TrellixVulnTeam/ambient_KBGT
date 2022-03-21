@@ -72,8 +72,8 @@ def get_bass_line(bass_line):
         # Append the next bass note to the result
         bass_line_result.append(next_bass_note)
         # Update the counter
-        i += 1
-        return bass_line_result
+    i += 1
+    return bass_line_result
 
 ###########################################################
 

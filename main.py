@@ -53,7 +53,7 @@ def main():
             if count_step(previous_chord, list[k]) < count_step (previous_chord, temp_best):
                 temp_best = list[k]
         chord_progression.append(temp_best)
-    print('\nbass_line_result: ' str(bass_line_result))
+    print('\nbass_line_result: ' + str(bass_line_result))
     print('\nchord_scheme: ' + str(chord_scheme))
     print('\nchord_progression: ' + str(chord_progression) + '\n')
     return chord_progression
