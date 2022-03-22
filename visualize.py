@@ -1,5 +1,5 @@
-from music21 import * 
-from main import main
+from music21 import clef, meter, chord, note, stream
+from main_test import main
 
 score = stream.Score()
 part_1 = stream.Part()
@@ -40,4 +40,4 @@ for k in range(len(bass_line)):
 # Visualize the score:
 score.insert(0, part_1)
 score.insert(0, part_2)
-score.show()
+# score.show()

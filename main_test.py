@@ -10,59 +10,89 @@ from timeit import default_timer as timer
 
 def main():
     # Output container:
+    legal_answer = []
+    temp_progression = []
     chord_progression = []
     # harmonizer functions:
-    bass_line = get_input('\n' + 'Hello, please enter the bass line and separate by space: ')
+    # bass_line = get_input('\n' + 'Hello, please enter the bass line and separate by space: ')
+    bass_line = ['c', 'f', 'g']
     # Start the timer: 
     start = timer()
-    bass_line_result = get_bass_line(bass_line)
-    scheme = chord_quality_scheme(bass_line)
-    chord_select = scheme[0]
-    chord_scheme = scheme[1]
+    # harmonizer functions:
+    # bass_line_result = get_bass_line(bass_line)
+    bass_line_result = ['c3', 'f3', 'g3']
+    print('\nbass_line_result: ' + str(bass_line_result))
+    # scheme = chord_quality_scheme(bass_line)
+    # chord_select = scheme[0]
+    chord_select = ['m', 'm7', 'm7']
+    # chord_scheme = scheme[1]
+    chord_scheme = ['Cm', 'Fm7', 'Gm7']
+    print('\nchord_scheme: ' + str(chord_scheme))
     all_chord_result = spell_chord(bass_line, chord_select)
     all_combination = note_combination(all_chord_result)
+    print('\nall_combination: ' + str(all_combination))
     # combination functions:
     register = pre
-    for i in range(len(all_combination)):
-        chord = all_combination[i]
-        full_list = note_range_zip(chord, register)
-        full_list_result = ascending_order(full_list)
-        screened_result = voice_range(full_list_result)
-        screened_result_2 = remove_double(screened_result)
-        legal_chord = sat_octave(screened_result)
-        good_chord = ideal_chord(screened_result_2)
-        if i == 0:
-            # close_chord = find_structure(good_chord)[0]
-            # open_chord = find_structure(good_chord)[1]
-            first_chord = start_chord(good_chord)
-            chord_progression.append(first_chord)
-            continue
-        # voicing function:
-        candidate_chord = []
-        for j in range(len(legal_chord)):
-            connection = [chord_progression[-1], legal_chord[j]]
-            if error_check_lite(connection) == True:
-                candidate_chord.append(legal_chord[j])
-        # Get the next chord:
-        if len(candidate_chord) > 1:
-            temp_best = candidate_chord[0]
-            list = candidate_chord
-        else:
-            temp_best = legal_chord[0]
-            list = legal_chord
-        previous_chord = chord_progression[-1]
-        for k in range(1, len(list)):
-            if count_step(previous_chord, list[k]) < count_step (previous_chord, temp_best):
-                temp_best = list[k]
-        chord_progression.append(temp_best)
-    print('\nbass_line_result: ' + str(bass_line_result))
-    print('\nchord_scheme: ' + str(chord_scheme))
-    print('\ngood_chord: ' + str(good_chord))
-    print('\nchord_progression: ' + str(chord_progression))
+    # Determine the first chord:
+    chord = all_combination[0]
+    full_list = note_range_zip(chord, register)
+    full_list_result = ascending_order(full_list)
+    screened_result = voice_range(full_list_result)
+    screened_result_2 = remove_double(screened_result)
+    good_chord = ideal_chord(screened_result_2)
+    print('\ngood_chord (start_chord): ' + str(good_chord))
+    print(len(good_chord))
+    for i in range(len(good_chord)):
+        first_chord = good_chord[i]
+        print('\nfirst_chord: ' + str(first_chord))
+        temp_progression.append(first_chord)
+        for j in range(1, len(all_combination)):
+            chord = all_combination[j]
+            full_list = note_range_zip(chord, register)
+            full_list_result = ascending_order(full_list)
+            screened_result = voice_range(full_list_result)
+            screened_result_2 = remove_double(screened_result)
+            legal_chord = sat_octave(screened_result)
+            # voicing function:
+            candidate_chord = []
+            for k in range(len(legal_chord)):
+                connection = [temp_progression[-1], legal_chord[k]]
+                if error_check_lite(connection) == True:
+                    candidate_chord.append(legal_chord[k])
+            # Get the next chord:
+            if len(candidate_chord) != 0:
+                temp_best = candidate_chord[0]
+                list = candidate_chord
+            else:
+                i += 1
+                j += 1
+                print('incomplete: ' + str(temp_progression))
+                temp_progression = []
+                print(f'{first_chord} have no candidate connection')
+                break    
+            previous_chord = temp_progression[-1]
+            for k in range(1, len(list)):
+                if count_step(previous_chord, list[k]) < count_step (previous_chord, temp_best):
+                    temp_best = list[k]
+            temp_progression.append(temp_best)
+        print('temp_progression: ' + str(temp_progression))
+        if len(temp_progression) == len(chord_scheme):
+            # chord_progression.append(temp_progression)
+            legal_answer.append(temp_progression)
+            temp_progression = []
+    print('\nlegal_answer: ' + str(legal_answer))
+    print(len(legal_answer))
     # End the timer:
     end = timer()
     print('\nRunning time:', str(end - start) + '\n')
-    return chord_progression, bass_line_result
+    return chord_progression, bass_line_result, good_chord
+
+# def multi_answer():
+#     user_input = main()
+#     legal_answer = []
+#     good_chord = user_input[2]
+#     for i in range(len(good_chord)):
+#         first_chord = good_chord[i]
 
 if __name__ == '__main__':
     main()

@@ -30,10 +30,10 @@ def main():
         screened_result = voice_range(full_list_result)
         screened_result_2 = remove_double(screened_result)
         legal_chord = sat_octave(screened_result)
-        good_chord = ideal_chord(screened_result_2)
         if i == 0:
             # close_chord = find_structure(good_chord)[0]
             # open_chord = find_structure(good_chord)[1]
+            good_chord = ideal_chord(screened_result_2)
             first_chord = start_chord(good_chord)
             chord_progression.append(first_chord)
             continue
