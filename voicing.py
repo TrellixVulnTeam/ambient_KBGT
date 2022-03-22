@@ -163,3 +163,7 @@ def error_check_lite(connection):
     return result
 
 ###########################################################
+
+# Count the step and sort the answers in legal_answer:
+def rate_and_sort(legal_answer):
+    

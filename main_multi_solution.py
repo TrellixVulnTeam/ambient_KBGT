@@ -90,3 +90,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+'''
+1. try {len(good_chord)} times, {len(legal_answer)} solutions found!
+2. if len == 1: midi out and show the answer directly
+3. if len != 1: rate_and_sort, midi out the best answer, show all answers in sorted order
+'''
