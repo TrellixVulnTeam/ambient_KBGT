@@ -86,7 +86,7 @@ def main():
     # End the timer:
     end = timer()
     print('\nRunning time:', str(end - start) + '\n')
-    return chord_progression, bass_line_result, good_chord
+    return legal_answer, bass_line_result, good_chord
 
 if __name__ == '__main__':
     main()
