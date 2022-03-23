@@ -81,10 +81,32 @@ def get_bass_line(bass_line):
 def chord_quality_scheme(bass_line):
     # Set up the chord quality list:
     chord_quality = ['', 'm', 'sus2', 'sus4', 'maj7','m7']
+    # Give open chord simpler quality:
+    open_chord_quality = ['', 'm', 'maj7','m7']
     # Set up the chord scheme:
     chord_select = []
-    # Randomly select from quality list and create the scheme
-    chord_select = random.choices(chord_quality, k=len(bass_line))
+    # Randomly select from quality list and create the scheme:
+    for i in range(len(bass_line)):
+        if i == 0:
+            # Select the quality for starting chord:
+            start_quality = random.choice(open_chord_quality)
+            # Append to the result:
+            chord_select.append(start_quality)
+        else:
+            # Select the quality for other chords:
+            temp_quality = random.choice(chord_quality)
+            # Check if the current quality equal to previous quality:
+            if temp_quality == chord_select[-1]:
+                # Remove the previous quality from the list:
+                chord_quality.remove(chord_select[-1])
+                # Excute the selection again:
+                temp_quality = random.choice(chord_quality)
+                # Append to the result:
+                chord_select.append(temp_quality)
+            # Append to the result:
+            chord_select.append(temp_quality)
+        # Restore the variable:
+        chord_quality = ['', 'm', 'sus2', 'sus4', 'maj7','m7']
     # Turn bass line list into upper case:
     bass_line_upper = map(lambda i: i.capitalize(), bass_line)
     # Merge the bass line and chord scheme:
