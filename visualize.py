@@ -1,6 +1,6 @@
 from music21 import clef, meter, chord, note, stream
-from main_multi_solution import main
-# from main import main
+# from main_multi_solution import main
+from main import main
 
 score = stream.Score()
 part_1 = stream.Part()

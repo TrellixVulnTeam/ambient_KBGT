@@ -2,7 +2,7 @@ from harmonizer import get_input, get_bass_line, chord_quality_scheme
 from harmonizer import spell_chord, note_combination
 from combination import note_range_zip, ascending_order, voice_range, sat_octave
 from combination import remove_double, ideal_chord, find_structure, start_chord
-from voicing import count_step, error_check_lite, error_check
+from voicing import count_step, error_check_lite, rate_and_sort, error_check
 
 from harmonizer_dict import pre_assign_register as pre
 
@@ -21,7 +21,7 @@ def main():
     # harmonizer functions:
     bass_line_result = get_bass_line(bass_line)
     # bass_line_result = ['c3', 'f3', 'g3']
-    print('\nbass_line_result: ' + str(bass_line_result))
+    # print('\nbass_line_result: ' + str(bass_line_result))
     scheme = chord_quality_scheme(bass_line)
     chord_select = scheme[0]
     # chord_select = ['m', 'm7', 'm7']
@@ -83,6 +83,10 @@ def main():
             temp_progression = []
     print('\nlegal_answer: ' + str(legal_answer))
     print(len(legal_answer))
+    sorted_answer = rate_and_sort(legal_answer)
+    print('\nsorted_answer: ' + str(sorted_answer)) 
+    print(len(sorted_answer))
+    print(f'\ntry {len(good_chord)} times, {len(legal_answer)} solutions found!')
     # End the timer:
     end = timer()
     print('\nRunning time:', str(end - start) + '\n')
@@ -90,9 +94,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-'''
-1. try {len(good_chord)} times, {len(legal_answer)} solutions found!
-2. if len == 1: midi out and show the answer directly
-3. if len != 1: rate_and_sort, midi out the best answer, show all answers in sorted order
-'''

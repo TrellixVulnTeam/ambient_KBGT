@@ -164,6 +164,52 @@ def error_check_lite(connection):
 
 ###########################################################
 
+# legal_answer = [
+#     [['a2', 'a4', 'c#5', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
+#     [['a3', 'a4', 'c#5', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
+#     [['a2', 'c#4', 'a4', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
+#     [['a3', 'c#4', 'a4', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
+#     [['a3', 'e4', 'a4', 'c#5'], ['b2', 'd#4', 'a#4', 'f#5'], ['f3', 'g4', 'c5', 'f5'], ['g3', 'g4', 'c5', 'd5']], 
+#     [['a2', 'e4', 'c#5', 'a5'], ['b2', 'd#4', 'a#4', 'f#5'], ['f3', 'g4', 'c5', 'f5'], ['g3', 'g4', 'c5', 'd5']]
+# ]
+
 # Count the step and sort the answers in legal_answer:
 def rate_and_sort(legal_answer):
-    
+    # Container:
+    progression_rate = []
+    rate_list = []
+    # Iteration:
+    for i in range(len(legal_answer)):
+        for j in range(1, len(legal_answer[i][0])):
+            this_chord = legal_answer[i][j-1]
+            next_chord = legal_answer[i][j]
+            chord_rate = count_step(this_chord, next_chord)
+            progression_rate.append(chord_rate)
+        print('\nprogression_rate: ' + str(progression_rate))
+        temp_rate = sum(progression_rate)
+        print('temp_rate: ' + str(temp_rate))
+        progression_rate = []
+        rate_list.append(temp_rate)
+    print('\nrate_list: ' + str(rate_list))
+    # Combine rate and chord progression into dict:
+    rate = dict()
+    for k in range(len(rate_list)):
+        if rate_list[k] in rate:
+            rate[rate_list[k]].append(legal_answer[k])
+        else:
+            rate[rate_list[k]] = [legal_answer[k]]
+    print('\nrate: ' + str(rate))
+    print(len(rate))
+    # Sort the chord progressions by rate:
+    rate_sorted = {key:value for key, value in sorted(rate.items(), key=lambda item: int(item[0]))}
+    print('\nrate_sorted: ' + str(rate_sorted))
+    print(len(rate_sorted))
+    # Extract the value from dict and create a list:
+    temp_answer = list(map(list, (chord for chord in rate_sorted.values())))
+    # print('\ntemp_answer: ' + str(temp_answer))
+    # Flatten the list:
+    sorted_answer = [item for sublist in temp_answer for item in sublist]
+    return sorted_answer
+
+# if __name__ == '__main__':
+#     rate_and_sort(legal_answer)
