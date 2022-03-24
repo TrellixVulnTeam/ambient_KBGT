@@ -36,6 +36,8 @@ def check_voice_overlap(connection):
     this_chord = connection[0]
     next_chord = connection[1]
     if midi_num[next_chord[0]] < midi_num[this_chord[1]]:
+    # if midi_num[next_chord[0]] < midi_num[this_chord[1]] and \
+    #    midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]]:
         if midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]]:
             if midi_num[this_chord[1]] < midi_num[next_chord[2]] < midi_num[this_chord[3]]:
                 if midi_num[this_chord[2]] < midi_num[next_chord[3]]:
@@ -129,6 +131,7 @@ def count_step(this_chord, next_chord):
 
 # Combination 1 for error check functions:
 def error_check(connection):
+    # return not(check_same_direction(connection) or check_voice_overlap(connection))
     if check_same_direction(connection) == False:
         if check_voice_overlap(connection) == False:
             if check_direct_motion(connection) == False:

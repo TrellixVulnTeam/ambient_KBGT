@@ -60,11 +60,11 @@ for i in range(len(flatten_chord_progression)):
 print('\nbass_line_removed: ' + str(bass_line_removed))
 print(len(bass_line_removed)) 
 
-# Convert into Music21 chord format:
+# Convert into Music21 chord format - part 1:
 for j in range(len(bass_line_removed)):
     part_1.append(chord.Chord(bass_line_removed[j], type='whole'))
 
-# Convert into Music21 note format:
+# Convert into Music21 note format - part 2:
 for k in range(len(bass_line)):
     part_2.append(note.Note(bass_line[k], type='whole'))
 

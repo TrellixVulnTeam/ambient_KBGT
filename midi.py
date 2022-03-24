@@ -3,7 +3,8 @@ import sys
 import rtmidi
 import musx
 from musx import keynum
-from main import main
+from main_multi_solution import main
+# from main import main
 
 # MIDI port set up:
 midiout = rtmidi.MidiOut()
