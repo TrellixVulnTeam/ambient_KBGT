@@ -30,13 +30,6 @@ bass_line = user_input[1]
 #     [['c3', 'eb4', 'g4', 'c5'], ['d3', 'd4', 'f#4', 'a4'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']]
 # ]
 
-# Insert the double barline:
-# for i in range(len(chord_progression)):
-#     # Get to know where to insert the barline:
-#     location = len(chord_progression[0][0])
-#     # Insert the barline:
-#     part_1.insert(location * i, barline)
-
 # Flatten the chord_progression:
 flatten_chord_progression = [item for sublist in chord_progression for item in sublist]
 print('\nflatten_chord_progression: ' + str(flatten_chord_progression))
