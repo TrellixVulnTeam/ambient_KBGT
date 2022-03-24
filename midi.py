@@ -19,6 +19,7 @@ chord_progression = main()[0]
 # Flatten the chord_progression:
 melody = keynum([item for sublist in chord_progression for item in sublist])
 print('\nflatten_chord_progression: ' + str(melody))
+print(len(melody))
 
 # Control the player:
 command = input('\nContinue? (y/n) ')
