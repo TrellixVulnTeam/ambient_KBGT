@@ -24,11 +24,6 @@ user_input = main()
 # Get the output:
 chord_progression = user_input[0]
 bass_line = user_input[1]
-# chord_progression = [
-#     [['c3', 'g4', 'c5', 'eb5'], ['d3', 'f#4', 'a4', 'd5'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']], 
-#     [['c4', 'g4', 'c5', 'eb5'], ['d3', 'f#4', 'a4', 'd5'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']], 
-#     [['c3', 'eb4', 'g4', 'c5'], ['d3', 'd4', 'f#4', 'a4'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']]
-# ]
 
 # Flatten the chord_progression:
 flatten_chord_progression = [item for sublist in chord_progression for item in sublist]
@@ -65,3 +60,9 @@ for k in range(len(bass_line)):
 score.insert(0, part_1)
 score.insert(0, part_2)
 score.show()
+
+# chord_progression = [
+#     [['c3', 'g4', 'c5', 'eb5'], ['d3', 'f#4', 'a4', 'd5'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']], 
+#     [['c4', 'g4', 'c5', 'eb5'], ['d3', 'f#4', 'a4', 'd5'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']], 
+#     [['c3', 'eb4', 'g4', 'c5'], ['d3', 'd4', 'f#4', 'a4'], ['a2', 'e4', 'g#4', 'c#5'], ['b2', 'd#4', 'f#4', 'b4']]
+# ]

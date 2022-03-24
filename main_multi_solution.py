@@ -92,7 +92,7 @@ def main():
     print(f'\ntry {len(good_chord)} times, {len(legal_answer)} solutions found!')
     # End the timer:
     end = timer()
-    print('\nRunning time:', str((end - start) * 1000) + ' ms\n')
+    print('\nRunning time:', str((end - start) * 1000) + ' ms')
     return sorted_answer, bass_line_result, good_chord
 
 if __name__ == '__main__':
