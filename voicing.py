@@ -180,7 +180,7 @@ def rate_and_sort(legal_answer):
     rate_list = []
     # Iteration:
     for i in range(len(legal_answer)):
-        for j in range(1, len(legal_answer[i][0])):
+        for j in range(1, len(legal_answer[i])):
             this_chord = legal_answer[i][j-1]
             next_chord = legal_answer[i][j]
             chord_rate = count_step(this_chord, next_chord)
@@ -198,12 +198,12 @@ def rate_and_sort(legal_answer):
             rate[rate_list[k]].append(legal_answer[k])
         else:
             rate[rate_list[k]] = [legal_answer[k]]
-    print('\nrate: ' + str(rate))
-    print(len(rate))
+    # print('\nrate: ' + str(rate))
+    # print(len(rate))
     # Sort the chord progressions by rate:
     rate_sorted = {key:value for key, value in sorted(rate.items(), key=lambda item: int(item[0]))}
-    print('\nrate_sorted: ' + str(rate_sorted))
-    print(len(rate_sorted))
+    # print('\nrate_sorted: ' + str(rate_sorted))
+    # print(len(rate_sorted))
     # Extract the value from dict and create a list:
     temp_answer = list(map(list, (chord for chord in rate_sorted.values())))
     # print('\ntemp_answer: ' + str(temp_answer))

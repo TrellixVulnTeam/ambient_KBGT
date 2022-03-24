@@ -103,8 +103,9 @@ def chord_quality_scheme(bass_line):
                 temp_quality = random.choice(chord_quality)
                 # Append to the result:
                 chord_select.append(temp_quality)
-            # Append to the result:
-            chord_select.append(temp_quality)
+            else:
+                # Append to the result:
+                chord_select.append(temp_quality)
         # Restore the variable:
         chord_quality = ['', 'm', 'sus2', 'sus4', 'maj7','m7']
     # Turn bass line list into upper case:
