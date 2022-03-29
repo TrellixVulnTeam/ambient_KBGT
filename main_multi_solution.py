@@ -61,6 +61,7 @@ def main():
                 connection = [temp_progression[-1], legal_chord[k]]
                 if error_check_lite(connection) == True:
                     candidate_chord.append(legal_chord[k])
+            print('candidate_chord: ' + str(candidate_chord))
             # Get the next chord:
             if len(candidate_chord) != 0:
                 temp_best = candidate_chord[0]
@@ -93,7 +94,7 @@ def main():
     # End the timer:
     end = timer()
     print('\nRunning time:', str((end - start) * 1000) + ' ms')
-    return sorted_answer, bass_line_result, good_chord
+    return sorted_answer, bass_line_result, good_chord, chord_scheme
 
 if __name__ == '__main__':
     main()

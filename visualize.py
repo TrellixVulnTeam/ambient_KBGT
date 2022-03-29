@@ -1,4 +1,5 @@
-from music21 import clef, meter, bar, chord, note, stream
+from music21 import clef, meter, bar, chord, note, stream, ElementWrapper
+from numpy import number
 from main_multi_solution import main
 # from main import main
 
@@ -24,6 +25,7 @@ user_input = main()
 # Get the output:
 chord_progression = user_input[0]
 bass_line = user_input[1]
+chord_scheme = user_input[3]
 
 # Flatten the chord_progression:
 flatten_chord_progression = [item for sublist in chord_progression for item in sublist]
@@ -55,6 +57,18 @@ for j in range(len(bass_line_removed)):
 # Convert into Music21 note format - part 2:
 for k in range(len(bass_line)):
     part_2.append(note.Note(bass_line[k], type='whole'))
+
+# Add chord quality (lyric format) to part 2:
+for i in range(len(bass_line_removed)):
+    for j in range(len(chord_scheme)):
+        # this_note = note.Note(bass_line[k], type='whole')
+        lyric = note.Lyric(chord_scheme[j])
+        # print(lyric)
+        test = stream.Measure(number = i)
+        test.append(ElementWrapper(lyric))
+        # Reset the pointer if j is the last item:
+        if j == len(chord_scheme) - 1:
+            j = 0
 
 # Visualize the score:
 score.insert(0, part_1)
