@@ -54,21 +54,12 @@ print(len(bass_line_removed))
 for j in range(len(bass_line_removed)):
     part_1.append(chord.Chord(bass_line_removed[j], type='whole'))
 
+# Expand the chord scheme:
+chord_scheme = chord_scheme * len(chord_progression)
+
 # Convert into Music21 note format - part 2:
 for k in range(len(bass_line)):
-    part_2.append(note.Note(bass_line[k], type='whole'))
-
-# Add chord quality (lyric format) to part 2:
-for i in range(len(bass_line_removed)):
-    for j in range(len(chord_scheme)):
-        # this_note = note.Note(bass_line[k], type='whole')
-        lyric = note.Lyric(chord_scheme[j])
-        # print(lyric)
-        test = stream.Measure(number = i)
-        test.append(ElementWrapper(lyric))
-        # Reset the pointer if j is the last item:
-        if j == len(chord_scheme) - 1:
-            j = 0
+        part_2.append(note.Note(bass_line[k], type='whole', lyric=f'{chord_scheme[k]}'))
 
 # Visualize the score:
 score.insert(0, part_1)
