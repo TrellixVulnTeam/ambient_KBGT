@@ -22,7 +22,7 @@ def interval(low_note, top_note):
     # Return error message if only one octave register is assigned:
     if low_contains_register == False or top_contains_register == False:
         if low_contains_register == True or top_contains_register == True:
-            print('\n' + '(interval_def) Oops, incomplete octave register assignemt. Please try it again.' + '\n')
+            print('\n' + '(interval_def_1) Oops, incomplete octave register assignemt. Please try it again.' + '\n')
             sys.exit()
 
     # If the input has no digit, assign default octave register:
@@ -45,12 +45,12 @@ def interval(low_note, top_note):
     # Return error message if low note is higher than top note in same register:
     if low_register == top_register:
         if low > top:
-            print('\n' + '(interval_def) Oops, invalid input. Please try it again.' + '\n')
+            print('\n' + '(interval_def_2) Oops, invalid input. Please try it again.' + '\n')
             sys.exit()
 
     # Return the error message if the low note register is higher the top note:
     if low_register > top_register:
-        print('\n' + '(interval_def) Oops, invalid register input. Please try it again.' + '\n')
+        print('\n' + '(interval_def_3) Oops, invalid register input. Please try it again.' + '\n')
         sys.exit()
 
     # Pre-process the notes with accidentals:
