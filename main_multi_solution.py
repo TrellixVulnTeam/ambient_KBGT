@@ -16,7 +16,6 @@ def main():
     # harmonizer functions:
     # bass_line = get_input('\n' + 'Hello, please enter the bass line and separate by space: ')
     bass_line = ['f', 'b', 'c', 'e', 'd', 'c']
-    
     # Start the timer: 
     start = timer()
     # harmonizer functions:
@@ -62,7 +61,7 @@ def main():
                 connection = [temp_progression[-1], legal_chord[k]]
                 if error_check_lite(connection) == True:
                     candidate_chord.append(legal_chord[k])
-            print('candidate_chord: ' + str(candidate_chord))
+            # print('candidate_chord: ' + str(candidate_chord))
             # Get the next chord:
             if len(candidate_chord) != 0:
                 temp_best = candidate_chord[0]

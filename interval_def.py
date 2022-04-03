@@ -6,7 +6,9 @@ from interval_dict import midi_dict, benchmark_dict, octave_dict
 from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
 
 def interval(low_note, top_note):
-
+    # For debug:
+    print(low_note, top_note)
+    
     # Get letter corresponding number:
     low = key_dict[low_note[0]]
     top = key_dict[top_note[0]]

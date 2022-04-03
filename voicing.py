@@ -57,6 +57,9 @@ def check_voice_overlap(connection):
 
 # Error check 3: direct (hidden) 5th/8ve:
 def check_direct_motion(connection):
+    # For Debug:
+    print('def: check_direct_motion')
+
     this_chord = connection[0]
     next_chord = connection[1]
     stepwise_check = ['minor second', 'major second']
@@ -91,6 +94,9 @@ def check_direct_motion(connection):
 
 # Error check 4: Parallel 1st/5th/8ve
 def check_parallel_motion(connection):
+        # For Debug:
+    print('def: check_parallel_motion')
+    
     this_chord = connection[0]
     next_chord = connection[1]
     parallel_motion_check = ['perfect unison', 'perfect fifth', 'perfect octave']
@@ -166,15 +172,6 @@ def error_check_lite(connection):
     return result
 
 ###########################################################
-
-# legal_answer = [
-#     [['a2', 'a4', 'c#5', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
-#     [['a3', 'a4', 'c#5', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
-#     [['a2', 'c#4', 'a4', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
-#     [['a3', 'c#4', 'a4', 'e5'], ['b2', 'f#4', 'a#4', 'd#5'], ['f3', 'f4', 'g4', 'c5'], ['g3', 'd4', 'g4', 'c5']], 
-#     [['a3', 'e4', 'a4', 'c#5'], ['b2', 'd#4', 'a#4', 'f#5'], ['f3', 'g4', 'c5', 'f5'], ['g3', 'g4', 'c5', 'd5']], 
-#     [['a2', 'e4', 'c#5', 'a5'], ['b2', 'd#4', 'a#4', 'f#5'], ['f3', 'g4', 'c5', 'f5'], ['g3', 'g4', 'c5', 'd5']]
-# ]
 
 # Count the step and sort the answers in legal_answer:
 def rate_and_sort(legal_answer):

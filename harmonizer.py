@@ -4,10 +4,6 @@ from harmonizer_dict import note_to_number, number_to_note
 from harmonizer_dict import chord_quality_to_diatonic, chord_quality_to_semitone
 from harmonizer_dict import semitone_to_accidental
 
-from musx import Score, Seq, MidiFile, keynum, rhythm
-from musx.midi.gm import ChurchOrgan
-from musx.paint import brush
-
 import random
 
 ###########################################################
