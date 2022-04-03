@@ -14,20 +14,21 @@ def main():
     temp_progression = []
     chord_progression = []
     # harmonizer functions:
-    bass_line = get_input('\n' + 'Hello, please enter the bass line and separate by space: ')
-    # bass_line = ['c', 'f', 'g']
+    # bass_line = get_input('\n' + 'Hello, please enter the bass line and separate by space: ')
+    bass_line = ['f', 'b', 'c', 'e', 'd', 'c']
+    
     # Start the timer: 
     start = timer()
     # harmonizer functions:
-    bass_line_result = get_bass_line(bass_line)
-    # bass_line_result = ['c3', 'f3', 'g3']
+    # bass_line_result = get_bass_line(bass_line)
+    bass_line_result = ['f3', 'b2', 'c3', 'e3', 'd3', 'c3']
     print('\nbass_line_result: ' + str(bass_line_result))
     print(len(bass_line_result))
     scheme = chord_quality_scheme(bass_line)
-    chord_select = scheme[0]
-    # chord_select = ['m', 'm7', 'm7']
-    chord_scheme = scheme[1]
-    # chord_scheme = ['Cm', 'Fm7', 'Gm7']
+    # chord_select = scheme[0]
+    chord_select = ['maj7', '', 'm7', 'maj7', 'sus2', '']
+    # chord_scheme = scheme[1]
+    chord_scheme = ['Fmaj7', 'B', 'Cm7', 'Emaj7', 'Dsus2', 'C']
     print('\nchord_scheme: ' + str(chord_scheme))
     print(len(chord_scheme))
     all_chord_result = spell_chord(bass_line, chord_select)
