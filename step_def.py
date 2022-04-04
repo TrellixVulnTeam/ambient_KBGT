@@ -4,7 +4,6 @@ from interval_dict import key_dict, key_dict_extend, semitone_dict, midi_dict
 # from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
 
 def step(low_note, top_note):
-
     # Exchange the note is low note is higher than top note:
     if midi_dict[low_note] > midi_dict[top_note]:
         low_note = top_note

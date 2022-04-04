@@ -58,7 +58,7 @@ def check_voice_overlap(connection):
 # Error check 3: direct (hidden) 5th/8ve:
 def check_direct_motion(connection):
     # For Debug:
-    print('def: check_direct_motion')
+    # print('def: check_direct_motion')
 
     this_chord = connection[0]
     next_chord = connection[1]
@@ -94,9 +94,8 @@ def check_direct_motion(connection):
 
 # Error check 4: Parallel 1st/5th/8ve
 def check_parallel_motion(connection):
-        # For Debug:
-    print('def: check_parallel_motion')
-    
+    # For Debug:
+    # print('def: check_parallel_motion')
     this_chord = connection[0]
     next_chord = connection[1]
     parallel_motion_check = ['perfect unison', 'perfect fifth', 'perfect octave']
