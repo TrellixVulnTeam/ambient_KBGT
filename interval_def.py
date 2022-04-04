@@ -2,13 +2,18 @@
 import sys, re
 from unittest import result
 from interval_dict import key_dict, interval_dict, key_dict_extend
-from interval_dict import midi_dict, benchmark_dict, octave_dict
+from interval_dict import midi_dict, benchmark_dict, octave_dict, semitone_dict
 from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
 
 def interval(low_note, top_note):
-    # For debug:
+    # For debuging:
     print(low_note, top_note)
-    
+
+    # Exchange the note is low note is higher than top note:
+    if midi_dict[low_note] > midi_dict[top_note]:
+        low_note = top_note
+        top_note = low_note
+
     # Get letter corresponding number:
     low = key_dict[low_note[0]]
     top = key_dict[top_note[0]]
@@ -44,16 +49,22 @@ def interval(low_note, top_note):
     low_register = int(re.findall(r'\d+', low_note)[0])
     top_register = int(re.findall(r'\d+', top_note)[0])
 
-    # Return error message if low note is higher than top note in same register:
-    if low_register == top_register:
-        if low > top:
-            print('\n' + '(interval_def_2) Oops, invalid input. Please try it again.' + '\n')
-            sys.exit()
+    # Get the note without register:
+    low_no_register = low_note[0:-1]
+    top_no_register = top_note[0:-1]
 
+    # Return unison if actual pitch is same but with different name:
+    if low_register == top_register:
+        # if semitone_dict[low_no_register] > semitone_dict[top_no_register]:
+        #     print('\n' + '(interval_def_2) Oops, invalid input. Please try it again.' + '\n')
+        #     sys.exit()
+        if low > top and semitone_dict[low_no_register] == semitone_dict[top_no_register]:
+            result = 'perfect unison'
+            return result
     # Return the error message if the low note register is higher the top note:
-    if low_register > top_register:
-        print('\n' + '(interval_def_3) Oops, invalid register input. Please try it again.' + '\n')
-        sys.exit()
+    # if low_register > top_register:
+    #     print('\n' + '(interval_def_3) Oops, invalid register input. Please try it again.' + '\n')
+    #     sys.exit()
 
     # Pre-process the notes with accidentals:
     low_note_natural = low_note[0] + low_note[-1]
@@ -64,7 +75,7 @@ def interval(low_note, top_note):
     # print('top note w/o accidentals:' + top_note_natural) 
 
     # Get the distance:
-    temp_distance = key_dict_extend[top_note_natural] - key_dict_extend[low_note_natural]
+    temp_distance = abs(key_dict_extend[top_note_natural] - key_dict_extend[low_note_natural])
     if temp_distance <= 7:
         distance = interval_dict[temp_distance]
     else:
@@ -98,7 +109,10 @@ def interval(low_note, top_note):
     # print('benchmark semitone: ' + str(benchmark))
 
     # Get the difference between the interval and benchmark:
-    difference = (semi_distance % 12) - benchmark
+    if distance in ['unison', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh']:
+        difference = semi_distance - benchmark
+    else:
+        difference = (semi_distance % 12) - benchmark
     if benchmark == 12 and input_dict_2[low_note[:-1]] <= input_dict_2[top_note[:-1]]:
         difference = difference + 12
 
@@ -133,11 +147,11 @@ def interval(low_note, top_note):
         result = f'{perfect_quality_dict[difference]} {interval_dict[temp_distance % 7]}'
     else:   # Error message
         # print('\n' + 'Oops, there is an error. Please try it again.' + '\n')
-        result = '(interval_def) Oops, there is an error. Please try it again.'
+        result = '(interval_def_4) Oops, there is an error. Please try it again.'
     return result
 
 if __name__ == '__main__':
-    interval('d4', 'd5')
-    interval('d4', 'd7')
-    interval('d', 'a')
-    interval('d4', 'a7')
+    print(interval('cb5', 'b#5'))
+    print(interval('db5', 'c##5'))
+    print(interval('d4', 'd7'))
+    print(interval('d4', 'a7'))

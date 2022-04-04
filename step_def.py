@@ -1,9 +1,14 @@
 import sys, re
-from interval_dict import key_dict, key_dict_extend
+from interval_dict import key_dict, key_dict_extend, semitone_dict, midi_dict
 # from interval_dict import midi_dict, benchmark_dict, octave_dict, interval_dict
 # from interval_dict import major_quality_dict, perfect_quality_dict, input_dict_2
 
 def step(low_note, top_note):
+
+    # Exchange the note is low note is higher than top note:
+    if midi_dict[low_note] > midi_dict[top_note]:
+        low_note = top_note
+        top_note = low_note
 
     # Get letter corresponding number:
     low = key_dict[low_note[0]]
@@ -40,16 +45,23 @@ def step(low_note, top_note):
     low_register = int(re.findall(r'\d+', low_note)[0])
     top_register = int(re.findall(r'\d+', top_note)[0])
 
-    # Return error message if low note is higher than top note in same register:
+    # Get the note without register:
+    low_no_register = low_note[0:-1]
+    top_no_register = top_note[0:-1]
+
+    # Return unison if actual pitch is same but with different name:
     if low_register == top_register:
-        if low > top:
-            print('\n' + '(step_def_2) Oops, invalid input. Please try it again.' + '\n')
-            sys.exit()
+        # if semitone_dict[low_no_register] > semitone_dict[top_no_register]:
+        #     print('\n' + '(step_def_2) Oops, invalid input. Please try it again.' + '\n')
+        #     sys.exit()
+        if low > top and semitone_dict[low_no_register] == semitone_dict[top_no_register]:
+            result = 0
+            return result
 
     # Return the error message if the low note register is higher the top note:
-    if low_register > top_register:
-        print('\n' + '(step_def_3) Oops, invalid register input. Please try it again.' + '\n')
-        sys.exit()
+    # if low_register > top_register:
+    #     print('\n' + '(step_def_3) Oops, invalid register input. Please try it again.' + '\n')
+    #     sys.exit()
 
     # Pre-process the notes with accidentals:
     low_note_natural = low_note[0] + low_note[-1]
@@ -68,3 +80,4 @@ if __name__ == '__main__':
     print(step('f5', 'b5'))
     print(step('d4', 'c5'))
     print(step('g3', 'a4'))
+    print(step('eb4', 'd#4'))
