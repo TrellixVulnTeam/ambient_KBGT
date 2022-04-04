@@ -1,5 +1,6 @@
 import time
 import sys
+import random
 from more_itertools import difference
 import rtmidi
 import musx
@@ -104,7 +105,7 @@ def add_register(chromatic_pool):
     return pool_register
 
 if __name__ == '__main__':
-    pool_register = add_register(chromatic_pool)
+    pool_register = add_register(chromatic_pool) * 100
 
 # Flatten the chord_progression:
 # melody = keynum([item for sublist in chord_progression for item in sublist])
@@ -115,37 +116,52 @@ if __name__ == '__main__':
 # print(len(melody))
 
 # Control the player:
-command = input('\nContinue? (y/n) ')
-if command == 'y':
-    control = True
-else:
-    sys.exit()
+# command = input('\nContinue? (y/n) ')
+# if command == 'y':
+#     control = True
+# else:
+#     sys.exit()
 
 # Real time MIDI output:
-if control == True:
-    for i in range(len(melody)):
+# if control == True:
+    for i in range(len(pool_register)):
+        # Assign the note pool:
+        note_pool = pool_register[i]
+        # Assign the possibility:
+        possibility = (1, 1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+        # Select the notes:
+        note_selected = random.choices(note_pool, weights=(possibility), k = 4)
         # pick a random midi key number
-        key_1 = melody[i][0]
-        key_2 = melody[i][1]
-        key_3 = melody[i][2]
-        key_4 = melody[i][3]
+        key_1 = keynum(note_selected[0])
+        key_2 = keynum(note_selected[1])
+        key_3 = keynum(note_selected[2])
+        key_4 = keynum(note_selected[3])
         # pick a random duration
-        dur = musx.pick(3, 3.5, 4)
+        # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
-        # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
+        dur = musx.pick(0.09, 0.1, 0.12)
+        vel = musx.pick(50, 70, 80)
         # send it out
-        print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
-        midiout.send_message(musx.note_on(0, key_1, 80))
-        midiout.send_message(musx.note_on(0, key_2, 80))
-        midiout.send_message(musx.note_on(0, key_3, 80))
-        midiout.send_message(musx.note_on(0, key_4, 80))
+        print(f"group {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
+        midiout.send_message(musx.note_on(0, key_1, vel))
+        # wait for duration
+        time.sleep(dur)
+        midiout.send_message(musx.note_off(0, key_1, vel))
+        midiout.send_message(musx.note_on(0, key_2, vel))
+        # wait for duration
+        time.sleep(dur)
+        midiout.send_message(musx.note_off(0, key_2, vel))
+        midiout.send_message(musx.note_on(0, key_3, vel))
+        # wait for duration
+        time.sleep(dur)
+        midiout.send_message(musx.note_off(0, key_3, vel))
+        midiout.send_message(musx.note_on(0, key_4, vel))
         # wait for duration
         time.sleep(dur)
         # stop the note
-        midiout.send_message(musx.note_off(0, key_1, 80))
-        midiout.send_message(musx.note_off(0, key_2, 80))
-        midiout.send_message(musx.note_off(0, key_3, 80))
-        midiout.send_message(musx.note_off(0, key_4, 80))
+        midiout.send_message(musx.note_off(0, key_4, vel))
+        if i == int(len(pool_register) - 1):
+            i = 0
 
 print("\nAll done!\n")
 
