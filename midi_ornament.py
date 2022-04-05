@@ -27,7 +27,6 @@ melody = [
 ]
 # melody = main()[0]
 
-
 def spell_pool(melody):
     # Grab the bass note (without register):
     bass_note_list = []
@@ -158,8 +157,6 @@ if __name__ == '__main__':
         time.sleep(dur)
         # stop the note
         midiout.send_message(musx.note_off(0, key_4, vel))
-        if i == int(len(pool_register) - 1):
-            i = 0
 
 print("\nAll done!\n")
 
