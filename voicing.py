@@ -35,19 +35,12 @@ def check_same_direction(connection):
 def check_voice_overlap(connection):
     this_chord = connection[0]
     next_chord = connection[1]
-    if midi_num[next_chord[0]] < midi_num[this_chord[1]]:
-    # if midi_num[next_chord[0]] < midi_num[this_chord[1]] and \
-    #    midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]]:
-        if midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]]:
-            if midi_num[this_chord[1]] < midi_num[next_chord[2]] < midi_num[this_chord[3]]:
-                if midi_num[this_chord[2]] < midi_num[next_chord[3]]:
-                    result = False
-                else: 
-                    result = True
-            else:
-                result = True
-        else:
-            result = True
+    # if midi_num[next_chord[0]] < midi_num[this_chord[1]]:
+    if midi_num[next_chord[0]] < midi_num[this_chord[1]] and \
+       midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]] and \
+       midi_num[this_chord[1]] < midi_num[next_chord[2]] < midi_num[this_chord[3]] and \
+       midi_num[this_chord[2]] < midi_num[next_chord[3]]:
+        result = False
     else:
         result = True
     # print(result)
@@ -210,5 +203,5 @@ def rate_and_sort(legal_answer):
     sorted_answer = [item for sublist in temp_answer for item in sublist]
     return sorted_answer
 
-# if __name__ == '__main__':
-#     rate_and_sort(legal_answer)
+if __name__ == '__main__':
+    rate_and_sort()
