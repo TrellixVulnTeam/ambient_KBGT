@@ -52,7 +52,6 @@ def check_voice_overlap(connection):
 def check_direct_motion(connection):
     # For Debug:
     # print('def: check_direct_motion')
-
     this_chord = connection[0]
     next_chord = connection[1]
     stepwise_check = ['minor second', 'major second']
@@ -129,39 +128,15 @@ def count_step(this_chord, next_chord):
 
 # Combination 1 for error check functions:
 def error_check(connection):
-    # return not(check_same_direction(connection) or check_voice_overlap(connection))
-    if check_same_direction(connection) == False:
-        if check_voice_overlap(connection) == False:
-            if check_direct_motion(connection) == False:
-                if check_parallel_motion(connection) == False:
-                    result = True
-                    return result
-                else:
-                    result = False
-            else:
-                result = False
-        else:
-            result = False
-    else:
-        result = False
-    return result
+    return not (check_same_direction(connection) or check_voice_overlap(connection) or \
+                check_direct_motion(connection) or check_parallel_motion(connection))
 
 ###########################################################
 
 # Combination 2 for error check functions:
 def error_check_lite(connection):
-    if check_voice_overlap(connection) == False:
-        if check_direct_motion(connection) == False:
-            if check_parallel_motion(connection) == False:
-                result = True
-                return result
-            else:
-                result = False
-        else:
-            result = False
-    else:
-        result = False
-    return result
+    return not (check_voice_overlap(connection) or check_direct_motion(connection) or \
+                check_parallel_motion(connection))
 
 ###########################################################
 

@@ -4,6 +4,8 @@ from voicing import check_voice_overlap
 from voicing import check_direct_motion
 from voicing import check_parallel_motion
 from voicing import count_step
+from voicing import error_check
+from voicing import error_check_lite
 from harmonizer_dict import pre_assign_register as pre
 
 class NameTestCase(unittest.TestCase):
@@ -52,6 +54,18 @@ class NameTestCase(unittest.TestCase):
     def test_5_3(self):
         test = count_step(['f3', 'a4', 'c5', 'f5'], ['g3', 'g3', 'd4', 'b5'])
         self.assertEqual(test, 17) # 17 steps in SAT voice
+    def test_6_1(self):
+        test = error_check([['b2', 'd4', 'f#4', 'b4'], ['f#3', 'c#4', 'a#4', 'f#5']])
+        self.assertEqual(test, False) # False (Parallel 8ve)
+    def test_6_2(self):
+        test = error_check([['f3', 'a4', 'c5', 'f5'], ['c3', 'e4', 'b4', 'g5']])
+        self.assertEqual(test, True) # True (legal connection)
+    def test_7_1(self):
+        test = error_check_lite([['b2', 'd4', 'f#4', 'b4'], ['f#3', 'c#4', 'a#4', 'f#5']])
+        self.assertEqual(test, False) # False (Parallel 8ve)
+    def test_7_2(self):
+        test = error_check_lite([['f3', 'a4', 'c5', 'f5'], ['c3', 'e4', 'b4', 'g5']])
+        self.assertEqual(test, True) # True (legal connection)
 
 if __name__ == '__main__':
     unittest.main()
