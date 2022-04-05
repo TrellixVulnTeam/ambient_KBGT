@@ -95,7 +95,8 @@ def check_parallel_motion(connection):
     for i in range(len(this_chord) - 1):
         # Pointer for high note:
         for j in range(i + 1, len(this_chord)):
-            if interval(this_chord[i], this_chord[j]) in parallel_motion_check and interval(next_chord[i], next_chord[j]) in parallel_motion_check:
+            if  interval(this_chord[i], this_chord[j]) in parallel_motion_check and \
+                interval(next_chord[i], next_chord[j]) in parallel_motion_check:
                 if interval(this_chord[i], this_chord[j]) == interval(next_chord[i], next_chord[j]):
                     result = True
                     return result
