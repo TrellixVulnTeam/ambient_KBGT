@@ -38,7 +38,7 @@ def spell_pool(melody):
             bass_note = chord[0][:-1]
             bass_note_list.append(bass_note)
     # Test:
-    print('\nbass_note_list: ' + str(bass_note_list) + '\n' + str(len(bass_note_list)))
+    # print('\nbass_note_list: ' + str(bass_note_list) + '\n' + str(len(bass_note_list)))
     # Get the diatonic spelling:
     diatonic_pool = []
     diatonic_sublist = []
@@ -56,7 +56,7 @@ def spell_pool(melody):
         diatonic_pool.append(diatonic_sublist)
         diatonic_sublist = []
     # Test:
-    print('\ndiatonic_pool: ' + str(diatonic_pool) + '\n' + str(len(diatonic_pool)))
+    # print('\ndiatonic_pool: ' + str(diatonic_pool) + '\n' + str(len(diatonic_pool)))
     # Get the chromatic spelling:
     chromatic_pool = []
     chromatic_sublist = []
@@ -77,7 +77,7 @@ def spell_pool(melody):
         chromatic_pool.append(chromatic_sublist)
         chromatic_sublist = []
     # Test:
-    print('\nchromatic_pool: ' + str(chromatic_pool) + '\n' + str(len(chromatic_pool)))
+    # print('\nchromatic_pool: ' + str(chromatic_pool) + '\n' + str(len(chromatic_pool)))
     return chromatic_pool
 
 if __name__ == '__main__':
@@ -99,7 +99,7 @@ def add_register(chromatic_pool):
         pool_register.append(pool_register_sublist)
         pool_register_sublist = []
     # Test:
-    print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
+    # print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
     return pool_register
 
 if __name__ == '__main__':
@@ -137,8 +137,8 @@ if __name__ == '__main__':
         # pick a random duration
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
-        dur = musx.pick(0.1, 0.13, 0.15)
-        vel = musx.pick(30, 50, 70)
+        dur = musx.pick(0.11, 0.13, 0.15)
+        vel = musx.pick(30, 50, 60)
         # send it out
         print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
         midiout.send_message(musx.note_on(0, key_1, vel))
