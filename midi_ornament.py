@@ -128,34 +128,34 @@ if __name__ == '__main__':
         possibility = (1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1)
         # Select the notes:
         note_selected = random.choices(note_pool, weights=(possibility), k = 4)
-        # pick a random midi key number
+        # Pick a random midi key number:
         key_1 = keynum(note_selected[0])
         key_2 = keynum(note_selected[1])
         key_3 = keynum(note_selected[2])
         key_4 = keynum(note_selected[3])
-        # pick a random duration
+        # Pick a random duration:
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
         dur = musx.pick(0.11, 0.13, 0.15)
         vel = musx.pick(30, 50, 60)
-        # send it out
+        # Send it out:
         print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
         midiout.send_message(musx.note_on(0, key_1, vel))
-        # wait for duration
+        # Wait for duration:
         time.sleep(dur)
         midiout.send_message(musx.note_off(0, key_1, vel))
         midiout.send_message(musx.note_on(0, key_2, vel))
-        # wait for duration
+        # Wait for duration:
         time.sleep(dur)
         midiout.send_message(musx.note_off(0, key_2, vel))
         midiout.send_message(musx.note_on(0, key_3, vel))
-        # wait for duration
+        # Wait for duration:
         time.sleep(dur)
         midiout.send_message(musx.note_off(0, key_3, vel))
         midiout.send_message(musx.note_on(0, key_4, vel))
-        # wait for duration
+        # Wait for duration:
         time.sleep(dur)
-        # stop the note
+        # Stop the note:
         midiout.send_message(musx.note_off(0, key_4, vel))
 
 print("\nAll done!\n")
