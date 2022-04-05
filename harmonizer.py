@@ -76,9 +76,9 @@ def get_bass_line(bass_line):
 # Select the chord quality:
 def chord_quality_scheme(bass_line):
     # Set up the chord quality list:
-    chord_quality = ['', 'm', 'sus2', 'sus4', 'maj7','m7']
+    chord_quality = ['', 'm', 'sus2', 'sus4', 'm7']
     # Give open chord simpler quality:
-    open_chord_quality = ['', 'm', 'maj7','m7']
+    open_chord_quality = ['', 'm', 'm7']
     # Set up the chord scheme:
     chord_select = []
     # Randomly select from quality list and create the scheme:

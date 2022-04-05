@@ -21,15 +21,15 @@ def main():
     # harmonizer functions:
     bass_line_result = get_bass_line(bass_line)
     # bass_line_result = ['c#3', 'c#3', 'gb3', 'gb3', 'ab3', 'ab3', 'g#3', 'f#3', 'fb3', 'eb3', 'e#3', 'd#3', 'db3', 'c#3', 'g#2', 'gb2', 'f#2', 'fb2', 'e#2', 'eb2', 'db2', 'g#2', 'gb2', 'f#2', 'fb2', 'eb2', 'eb2', 'd2']
-    # print('\nbass_line_result: ' + str(bass_line_result))
-    # print(len(bass_line_result))
+    print('\nbass_line_result: ' + str(bass_line_result))
+    print(len(bass_line_result))
     scheme = chord_quality_scheme(bass_line)
     chord_select = scheme[0]
     # chord_select = ['m7', 'maj7', 'sus4', 'sus2', 'maj7', '', 'sus2', 'maj7', '', 'sus4', 'maj7', 'sus2', 'm7', 'sus4', 'm', 'sus4', 'm7', 'sus2', 'm7', 'm', 'sus4', '', 'm7', 'sus2', 'maj7', 'sus2', '', 'sus2']
     chord_scheme = scheme[1]
     # chord_scheme = ['C#m7', 'C#maj7', 'Gbsus4', 'Gbsus2', 'Abmaj7', 'Ab', 'G#sus2', 'F#maj7', 'Fb', 'Ebsus4', 'E#maj7', 'D#sus2', 'Dbm7', 'C#sus4', 'G#m', 'Gbsus4', 'F#m7', 'Fbsus2', 'E#m7', 'Ebm', 'Dbsus4', 'G#', 'Gbm7', 'F#sus2', 'Fbmaj7', 'Ebsus2', 'Eb', 'Dsus2']
-    # print('\nchord_scheme: ' + str(chord_scheme))
-    # print(len(chord_scheme))
+    print('\nchord_scheme: ' + str(chord_scheme))
+    print(len(chord_scheme))
     all_chord_result = spell_chord(bass_line, chord_select)
     all_combination = note_combination(all_chord_result)
     # print('\nall_combination: ' + str(all_combination))
@@ -42,8 +42,8 @@ def main():
     screened_result = voice_range(full_list_result)
     screened_result_2 = remove_double(screened_result)
     good_chord = ideal_chord(screened_result_2)
-    # print('\ngood_chord (start_chord): ' + str(good_chord))
-    # print(len(good_chord))
+    print('\ngood_chord (start_chord): ' + str(good_chord))
+    print(len(good_chord))
     for i in range(len(good_chord)):
         first_chord = good_chord[i]
         # print('\nfirst_chord: ' + str(first_chord))
@@ -85,12 +85,12 @@ def main():
             # chord_progression.append(temp_progression)
             legal_answer.append(temp_progression)
             temp_progression = []
-    # print('\nlegal_answer: ' + str(legal_answer))
+    print('\nlegal_answer: ' + str(legal_answer))
     print(len(legal_answer))
     sorted_answer = rate_and_sort(legal_answer)
-    # print('\nsorted_answer: ' + str(sorted_answer)) 
-    # print(len(sorted_answer))
-    # print(f'\ntry {len(good_chord)} times, {len(legal_answer)} solutions found!')
+    print('\nsorted_answer: ' + str(sorted_answer)) 
+    print(len(sorted_answer))
+    print(f'\ntry {len(good_chord)} times, {len(legal_answer)} solutions found!')
     # End the timer:
     end = timer()
     print('\nRunning time:', str((end - start) * 1000) + ' ms')

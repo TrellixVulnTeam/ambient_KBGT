@@ -17,7 +17,6 @@ midiout.open_port(outports.index('IAC Driver Bus 1'))
 midiout.is_port_open()
 
 # Define the melody:
-# melody = main()[0]
 melody = [
     [['c3', 'g3', 'eb4', 'bb4'], ['c3', 'c4', 'd4', 'g4'], ['g3', 'b3', 'd4', 'g4']], 
     [['c3', 'g4', 'eb5', 'bb5'], ['c3', 'c5', 'd5', 'g5'], ['g3', 'b4', 'd5', 'g5']], 
@@ -26,6 +25,7 @@ melody = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ]
+# melody = main()[0]
 
 
 def spell_pool(melody):
@@ -38,7 +38,7 @@ def spell_pool(melody):
             bass_note = chord[0][:-1]
             bass_note_list.append(bass_note)
     # Test:
-    # print('\nbass_note_list: ' + str(bass_note_list) + '\n' + str(len(bass_note_list)))
+    print('\nbass_note_list: ' + str(bass_note_list) + '\n' + str(len(bass_note_list)))
     # Get the diatonic spelling:
     diatonic_pool = []
     diatonic_sublist = []
@@ -56,7 +56,7 @@ def spell_pool(melody):
         diatonic_pool.append(diatonic_sublist)
         diatonic_sublist = []
     # Test:
-    # print('\ndiatonic_pool: ' + str(diatonic_pool) + '\n' + str(len(diatonic_pool)))
+    print('\ndiatonic_pool: ' + str(diatonic_pool) + '\n' + str(len(diatonic_pool)))
     # Get the chromatic spelling:
     chromatic_pool = []
     chromatic_sublist = []
@@ -77,7 +77,7 @@ def spell_pool(melody):
         chromatic_pool.append(chromatic_sublist)
         chromatic_sublist = []
     # Test:
-    # print('\nchromatic_pool: ' + str(chromatic_pool) + '\n' + str(len(chromatic_pool)))
+    print('\nchromatic_pool: ' + str(chromatic_pool) + '\n' + str(len(chromatic_pool)))
     return chromatic_pool
 
 if __name__ == '__main__':
@@ -99,7 +99,7 @@ def add_register(chromatic_pool):
         pool_register.append(pool_register_sublist)
         pool_register_sublist = []
     # Test:
-    # print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
+    print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
     return pool_register
 
 if __name__ == '__main__':
