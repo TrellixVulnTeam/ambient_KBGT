@@ -36,10 +36,10 @@ def check_voice_overlap(connection):
     this_chord = connection[0]
     next_chord = connection[1]
     # if midi_num[next_chord[0]] < midi_num[this_chord[1]]:
-    if midi_num[next_chord[0]] < midi_num[this_chord[1]] and \
-       midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]] and \
-       midi_num[this_chord[1]] < midi_num[next_chord[2]] < midi_num[this_chord[3]] and \
-       midi_num[this_chord[2]] < midi_num[next_chord[3]]:
+    if  midi_num[next_chord[0]] < midi_num[this_chord[1]] and \
+        midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]] and \
+        midi_num[this_chord[1]] < midi_num[next_chord[2]] < midi_num[this_chord[3]] and \
+        midi_num[this_chord[2]] < midi_num[next_chord[3]]:
         result = False
     else:
         result = True
