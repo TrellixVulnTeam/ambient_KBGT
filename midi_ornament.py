@@ -25,7 +25,7 @@ melody = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ]
-melody = main()[0] * 100
+# melody = main()[0] * 100
 
 def spell_pool(melody):
     # Grab the bass note (without register):
