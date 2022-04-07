@@ -3,7 +3,7 @@ import sys
 import random
 import rtmidi
 import musx
-from musx import keynum
+from musx import keynum 
 from main_multi_solution import main
 
 from harmonizer_dict import note_to_number, number_to_note
