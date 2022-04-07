@@ -1,4 +1,4 @@
-from music21 import clef, meter, bar, chord, note, stream, ElementWrapper
+from music21 import clef, meter, bar, chord, note, stream
 from main_multi_solution import main
 # from main import main
 
