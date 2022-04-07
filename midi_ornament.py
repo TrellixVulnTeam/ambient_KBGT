@@ -25,7 +25,7 @@ melody = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ]
-# melody = main()[0]
+melody = main()[0] * 100
 
 def spell_pool(melody):
     # Grab the bass note (without register):
@@ -137,6 +137,7 @@ if __name__ == '__main__':
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
         dur = musx.pick(0.11, 0.13, 0.15)
+        # rest = musx.pick(1.4, 1.13, 1.5)
         vel = musx.pick(30, 50, 60)
         # Send it out:
         print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
