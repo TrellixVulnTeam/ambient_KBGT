@@ -137,7 +137,7 @@ if __name__ == '__main__':
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
         dur = musx.pick(0.11, 0.13, 0.15)
-        # rest = musx.pick(1.4, 1.13, 1.5)
+        # dur = musx.pick(1.4, 1.13, 1.5)
         vel = musx.pick(30, 50, 60)
         # Send it out:
         print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
