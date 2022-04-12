@@ -102,19 +102,7 @@ def add_register(chromatic_pool):
 def get_pool(chord_progression):
     return add_register(spell_pool(chord_progression))
 
-# Test:
-# print('\nflatten_chord_progression: ' + str(chord_progression))
-# print(len(chord_progression))
-
-# Control the player:
-# command = input('\nContinue? (y/n) ')
-# if command == 'y':
-#     control = True
-# else:
-#     sys.exit()
-
-# Real time MIDI output:
-# if control == True:
+# Send out the MIDI note:
 def ornament(chord_progression):
     # Get the pool:
     pool_register = get_pool(chord_progression)
@@ -163,3 +151,17 @@ def ornament(chord_progression):
 
 if __name__ == '__main__':
     ornament(chord_progression)
+
+# Test:
+# print('\nflatten_chord_progression: ' + str(chord_progression))
+# print(len(chord_progression))
+
+# Control the player:
+# command = input('\nContinue? (y/n) ')
+# if command == 'y':
+#     control = True
+# else:
+#     sys.exit()
+
+# Real time MIDI output:
+# if control == True:
