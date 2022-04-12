@@ -20,7 +20,7 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 100
-chord_progression = main()[0] * 100
+# chord_progression = main()[0] * 100
 
 # Flatten the chord_progression:
 melody = keynum([item for sublist in chord_progression for item in sublist])
@@ -50,17 +50,17 @@ for i in range(len(melody)):
     # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
     # Send it out:
     print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
-    midiout.send_message(musx.note_on(0, key_1, 80))
-    midiout.send_message(musx.note_on(0, key_2, 80))
-    midiout.send_message(musx.note_on(0, key_3, 80))
-    midiout.send_message(musx.note_on(0, key_4, 80))
+    midiout.send_message(musx.note_on(1, key_1, 80))
+    midiout.send_message(musx.note_on(1, key_2, 80))
+    midiout.send_message(musx.note_on(1, key_3, 80))
+    midiout.send_message(musx.note_on(1, key_4, 80))
     # Wait for duration:
     time.sleep(dur)
     # Stop the note:
-    midiout.send_message(musx.note_off(0, key_1, 80))
-    midiout.send_message(musx.note_off(0, key_2, 80))
-    midiout.send_message(musx.note_off(0, key_3, 80))
-    midiout.send_message(musx.note_off(0, key_4, 80))
+    midiout.send_message(musx.note_off(1, key_1, 80))
+    midiout.send_message(musx.note_off(1, key_2, 80))
+    midiout.send_message(musx.note_off(1, key_3, 80))
+    midiout.send_message(musx.note_off(1, key_4, 80))
 
 print("\nAll done!\n")
 
