@@ -119,10 +119,11 @@ def ornament_maker(chord_progression):
         dur = musx.pick(0.11, 0.13, 0.15)
         repeat = random.randint(3, 7)
         pre_time = float(format(random.uniform(0, 4 - (dur * 4 * repeat)), '.2f'))
-        after_time = 4 - (dur * 4 * repeat) - pre_time
+        after_time = float(format(4 - (dur * 4 * repeat) - pre_time, '.2f'))
         vel = musx.pick(30, 50, 60)
         # Set up the pre_time:
-        time.sleep(pre_time)
+        time.sleep(abs(pre_time))
+        print(f"pre: {pre_time}, after: {after_time}")
         # Inner loop to play the notes:
         for i in range(repeat):
             # Select the notes:
@@ -130,7 +131,7 @@ def ornament_maker(chord_progression):
             # Pick a random midi key number:
             key_1, key_2, key_3, key_4 = keynum(note_selected[0]), keynum(note_selected[1]), keynum(note_selected[2]), keynum(note_selected[3])
             # Print and send the notes:
-            print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
+            print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
             midiout.send_message(musx.note_on(2, key_1, vel))
             # Wait for duration:
             time.sleep(dur)
@@ -149,7 +150,7 @@ def ornament_maker(chord_progression):
             # Stop the note:
             midiout.send_message(musx.note_off(2, key_4, vel))
         # Set up the after_time:
-        time.sleep(after_time)
+        time.sleep(abs(after_time))
     # Test:
     print("\nAll done!\n")
     # Set midi synth back to piano:

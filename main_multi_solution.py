@@ -42,8 +42,8 @@ def main():
     screened_result = voice_range(full_list_result)
     screened_result_2 = remove_double(screened_result)
     good_chord = ideal_chord(screened_result_2)
-    print('\ngood_chord (start_chord): ' + str(good_chord))
-    print(len(good_chord))
+    # print('\ngood_chord (start_chord): ' + str(good_chord))
+    # print(len(good_chord))
     for i in range(len(good_chord)):
         first_chord = good_chord[i]
         # print('\nfirst_chord: ' + str(first_chord))
@@ -85,8 +85,8 @@ def main():
             # chord_progression.append(temp_progression)
             legal_answer.append(temp_progression)
             temp_progression = []
-    print('\nlegal_answer: ' + str(legal_answer))
-    print(len(legal_answer))
+    # print('\nlegal_answer: ' + str(legal_answer))
+    # print(len(legal_answer))
     sorted_answer = rate_and_sort(legal_answer)
     print('\nsorted_answer: ' + str(sorted_answer)) 
     print(len(sorted_answer))
