@@ -112,19 +112,12 @@ def ornament_maker(chord_progression):
         note_pool = pool_register[i]
         # Assign the possibility:
         possibility = (1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1)
-        # Select the notes:
-        note_selected = random.choices(note_pool, weights=(possibility), k = 4)
-        # Pick a random midi key number:
-        key_1 = keynum(note_selected[0])
-        key_2 = keynum(note_selected[1])
-        key_3 = keynum(note_selected[2])
-        key_4 = keynum(note_selected[3])
         # Pick a random duration:
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
         # dur = musx.pick(1.4, 1.13, 1.5)
         dur = musx.pick(0.11, 0.13, 0.15)
-        repeat = random.randint(2, 5)
+        repeat = random.randint(2, 6)
         pre_time = float(format(random.uniform(0, 4 - (dur * 4 * repeat)), '.2f'))
         after_time = 4 - (dur * 4 * repeat) - pre_time
         vel = musx.pick(30, 50, 60)
@@ -132,6 +125,10 @@ def ornament_maker(chord_progression):
         time.sleep(pre_time)
         # Inner loop to play the notes:
         for i in range(repeat):
+            # Select the notes:
+            note_selected = random.choices(note_pool, weights=(possibility), k = 4)
+            # Pick a random midi key number:
+            key_1, key_2, key_3, key_4 = keynum(note_selected[0]), keynum(note_selected[1]), keynum(note_selected[2]), keynum(note_selected[3])
             # Print and send the notes:
             print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
             midiout.send_message(musx.note_on(2, key_1, vel))
