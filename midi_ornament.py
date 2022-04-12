@@ -26,6 +26,7 @@ chord_progression = [
 ]
 # chord_progression = main()[0] * 100
 
+# Generate the pool w/o register:
 def spell_pool(chord_progression):
     # Grab the bass note (without register):
     bass_note_list = []
@@ -97,12 +98,9 @@ def add_register(chromatic_pool):
     print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
     return pool_register
 
+# Get the pool:
 def get_pool(chord_progression):
     return add_register(spell_pool(chord_progression))
-
-# Flatten the chord_progression:
-# chord_progression = keynum([item for sublist in chord_progression for item in sublist])
-# chord_progression = keynum([item for sublist in chord_progression for item in sublist])
 
 # Test:
 # print('\nflatten_chord_progression: ' + str(chord_progression))
@@ -115,49 +113,53 @@ def get_pool(chord_progression):
 # else:
 #     sys.exit()
 
-pool_register = get_pool(chord_progression)
-
 # Real time MIDI output:
 # if control == True:
-for i in range(len(pool_register)):
-    # Assign the note pool:
-    note_pool = pool_register[i]
-    # Assign the possibility:
-    possibility = (1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1)
-    # Select the notes:
-    note_selected = random.choices(note_pool, weights=(possibility), k = 4)
-    # Pick a random midi key number:
-    key_1 = keynum(note_selected[0])
-    key_2 = keynum(note_selected[1])
-    key_3 = keynum(note_selected[2])
-    key_4 = keynum(note_selected[3])
-    # Pick a random duration:
-    # dur = musx.pick(3, 3.5, 4)
-    # dur = musx.pick(0.8, 1.3, 1.6)
-    dur = musx.pick(0.11, 0.13, 0.15)
-    # dur = musx.pick(1.4, 1.13, 1.5)
-    vel = musx.pick(30, 50, 60)
-    # Send it out:
-    print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
-    midiout.send_message(musx.note_on(2, key_1, vel))
-    # Wait for duration:
-    time.sleep(dur)
-    midiout.send_message(musx.note_off(2, key_1, vel))
-    midiout.send_message(musx.note_on(2, key_2, vel))
-    # Wait for duration:
-    time.sleep(dur)
-    midiout.send_message(musx.note_off(2, key_2, vel))
-    midiout.send_message(musx.note_on(2, key_3, vel))
-    # Wait for duration:
-    time.sleep(dur)
-    midiout.send_message(musx.note_off(2, key_3, vel))
-    midiout.send_message(musx.note_on(2, key_4, vel))
-    # Wait for duration:
-    time.sleep(dur)
-    # Stop the note:
-    midiout.send_message(musx.note_off(2, key_4, vel))
+def ornament(chord_progression):
+    # Get the pool:
+    pool_register = get_pool(chord_progression)
+    # Loop through the pool:
+    for i in range(len(pool_register)):
+        # Assign the note pool:
+        note_pool = pool_register[i]
+        # Assign the possibility:
+        possibility = (1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1)
+        # Select the notes:
+        note_selected = random.choices(note_pool, weights=(possibility), k = 4)
+        # Pick a random midi key number:
+        key_1 = keynum(note_selected[0])
+        key_2 = keynum(note_selected[1])
+        key_3 = keynum(note_selected[2])
+        key_4 = keynum(note_selected[3])
+        # Pick a random duration:
+        # dur = musx.pick(3, 3.5, 4)
+        # dur = musx.pick(0.8, 1.3, 1.6)
+        dur = musx.pick(0.11, 0.13, 0.15)
+        # dur = musx.pick(1.4, 1.13, 1.5)
+        vel = musx.pick(30, 50, 60)
+        # Send it out:
+        print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
+        midiout.send_message(musx.note_on(2, key_1, vel))
+        # Wait for duration:
+        time.sleep(dur)
+        midiout.send_message(musx.note_off(2, key_1, vel))
+        midiout.send_message(musx.note_on(2, key_2, vel))
+        # Wait for duration:
+        time.sleep(dur)
+        midiout.send_message(musx.note_off(2, key_2, vel))
+        midiout.send_message(musx.note_on(2, key_3, vel))
+        # Wait for duration:
+        time.sleep(dur)
+        midiout.send_message(musx.note_off(2, key_3, vel))
+        midiout.send_message(musx.note_on(2, key_4, vel))
+        # Wait for duration:
+        time.sleep(dur)
+        # Stop the note:
+        midiout.send_message(musx.note_off(2, key_4, vel))
+    # Test:
+    print("\nAll done!\n")
+    # Set midi synth back to piano:
+    midiout.send_message(musx.program_change(0, 0))
 
-print("\nAll done!\n")
-
-# set midi synth back to piano
-midiout.send_message(musx.program_change(0, 0))
+if __name__ == '__main__':
+    ornament(chord_progression)
