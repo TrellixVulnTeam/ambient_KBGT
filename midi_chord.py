@@ -40,7 +40,7 @@ def pad_maker(chord_progression):
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
         # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
-        vel = musx.pick(50, 55, 60, 70, 75)
+        vel = musx.pick(20, 40, 50, 70)
         # Send it out:
         print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
         midiout.send_message(musx.note_on(1, key_1, vel))
