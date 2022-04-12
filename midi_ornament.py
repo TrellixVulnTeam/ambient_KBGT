@@ -37,7 +37,7 @@ def spell_pool(chord_progression):
             bass_note = chord[0][:-1]
             bass_note_list.append(bass_note)
     # Test:
-    print('\nbass_note_list: ' + str(bass_note_list) + '\n' + str(len(bass_note_list)))
+    # print('\nbass_note_list: ' + str(bass_note_list) + '\n' + str(len(bass_note_list)))
     # Get the diatonic spelling:
     diatonic_pool = []
     diatonic_sublist = []
@@ -55,7 +55,7 @@ def spell_pool(chord_progression):
         diatonic_pool.append(diatonic_sublist)
         diatonic_sublist = []
     # Test:
-    print('\ndiatonic_pool: ' + str(diatonic_pool) + '\n' + str(len(diatonic_pool)))
+    # print('\ndiatonic_pool: ' + str(diatonic_pool) + '\n' + str(len(diatonic_pool)))
     # Get the chromatic spelling:
     chromatic_pool = []
     chromatic_sublist = []
@@ -76,7 +76,7 @@ def spell_pool(chord_progression):
         chromatic_pool.append(chromatic_sublist)
         chromatic_sublist = []
     # Test:
-    print('\nchromatic_pool: ' + str(chromatic_pool) + '\n' + str(len(chromatic_pool)))
+    # print('\nchromatic_pool: ' + str(chromatic_pool) + '\n' + str(len(chromatic_pool)))
     return chromatic_pool
 
 # Assign the pool with register:
@@ -95,7 +95,7 @@ def add_register(chromatic_pool):
         pool_register.append(pool_register_sublist)
         pool_register_sublist = []
     # Test:
-    print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
+    # print('\npool_register: ' + str(pool_register) + '\n' + str(len(pool_register)))
     return pool_register
 
 # Get the pool:

@@ -3,7 +3,7 @@ import random
 import threading
 import rtmidi
 import musx
-from musx import keynum 
+from musx import keynum
 
 from main_multi_solution import main
 from midi_chord import pad_maker
