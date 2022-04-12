@@ -1,5 +1,4 @@
 import time
-import sys
 import rtmidi
 import musx
 from musx import keynum

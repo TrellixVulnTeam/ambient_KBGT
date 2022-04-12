@@ -1,5 +1,4 @@
 import time
-import sys
 import random
 import rtmidi
 import musx
@@ -101,8 +100,6 @@ def add_register(chromatic_pool):
 def get_pool(chord_progression):
     return add_register(spell_pool(chord_progression))
 
-pool_register = get_pool(chord_progression)
-
 # Flatten the chord_progression:
 # chord_progression = keynum([item for sublist in chord_progression for item in sublist])
 # chord_progression = keynum([item for sublist in chord_progression for item in sublist])
@@ -117,6 +114,8 @@ pool_register = get_pool(chord_progression)
 #     control = True
 # else:
 #     sys.exit()
+
+pool_register = get_pool(chord_progression)
 
 # Real time MIDI output:
 # if control == True:
