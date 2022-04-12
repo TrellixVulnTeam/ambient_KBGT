@@ -24,7 +24,7 @@ SynthDef(\perc, {
 	sig = {SinOsc.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
 	sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
-	env = EnvGen.ar(Env.perc(0.01, 0.8, 0.8), doneAction:2);
+	env = EnvGen.ar(Env.perc(0.02, 1, 0.7), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
 }).add;
