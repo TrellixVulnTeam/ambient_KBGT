@@ -40,19 +40,20 @@ def pad_maker(chord_progression):
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
         # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
+        vel = musx.pick(50, 55, 60, 70, 75)
         # Send it out:
-        print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
-        midiout.send_message(musx.note_on(1, key_1, 80))
-        midiout.send_message(musx.note_on(1, key_2, 80))
-        midiout.send_message(musx.note_on(1, key_3, 80))
-        midiout.send_message(musx.note_on(1, key_4, 80))
+        print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
+        midiout.send_message(musx.note_on(1, key_1, vel))
+        midiout.send_message(musx.note_on(1, key_2, vel))
+        midiout.send_message(musx.note_on(1, key_3, vel))
+        midiout.send_message(musx.note_on(1, key_4, vel))
         # Wait for duration:
         time.sleep(dur)
         # Stop the note:
-        midiout.send_message(musx.note_off(1, key_1, 80))
-        midiout.send_message(musx.note_off(1, key_2, 80))
-        midiout.send_message(musx.note_off(1, key_3, 80))
-        midiout.send_message(musx.note_off(1, key_4, 80))
+        midiout.send_message(musx.note_off(1, key_1, vel))
+        midiout.send_message(musx.note_off(1, key_2, vel))
+        midiout.send_message(musx.note_off(1, key_3, vel))
+        midiout.send_message(musx.note_off(1, key_4, vel))
     # Test:
     print("\nAll done!\n")
     # set midi synth back to piano

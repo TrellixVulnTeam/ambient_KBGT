@@ -4,8 +4,7 @@ MIDIClient.init;
 MIDIIn.connectAll;
 
 MIDIFunc.trace(true);
-)
-(
+
 SynthDef(\sin, {
 	arg freq, harm=4, amp=0.1, out=0;
 	var sig, env;
