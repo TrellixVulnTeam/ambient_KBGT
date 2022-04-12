@@ -157,17 +157,3 @@ def ornament_maker(chord_progression):
 
 if __name__ == '__main__':
     ornament_maker(chord_progression)
-
-# Test:
-# print('\nflatten_chord_progression: ' + str(chord_progression))
-# print(len(chord_progression))
-
-# Control the player:
-# command = input('\nContinue? (y/n) ')
-# if command == 'y':
-#     control = True
-# else:
-#     sys.exit()
-
-# Real time MIDI output:
-# if control == True:
