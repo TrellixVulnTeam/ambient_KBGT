@@ -124,30 +124,33 @@ def ornament_maker(chord_progression):
         # dur = musx.pick(0.8, 1.3, 1.6)
         # dur = musx.pick(1.4, 1.13, 1.5)
         dur = musx.pick(0.11, 0.13, 0.15)
-        pre_time = float(format(random.uniform(0, 4 - (dur * 4)), '.2f'))
-        after_time = 4 - (dur * 4) - pre_time
+        repeat = random.randint(2, 5)
+        pre_time = float(format(random.uniform(0, 4 - (dur * 4 * repeat)), '.2f'))
+        after_time = 4 - (dur * 4 * repeat) - pre_time
         vel = musx.pick(30, 50, 60)
         # Set up the pre_time:
         time.sleep(pre_time)
-        # Send it out:
-        print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
-        midiout.send_message(musx.note_on(2, key_1, vel))
-        # Wait for duration:
-        time.sleep(dur)
-        midiout.send_message(musx.note_off(2, key_1, vel))
-        midiout.send_message(musx.note_on(2, key_2, vel))
-        # Wait for duration:
-        time.sleep(dur)
-        midiout.send_message(musx.note_off(2, key_2, vel))
-        midiout.send_message(musx.note_on(2, key_3, vel))
-        # Wait for duration:
-        time.sleep(dur)
-        midiout.send_message(musx.note_off(2, key_3, vel))
-        midiout.send_message(musx.note_on(2, key_4, vel))
-        # Wait for duration:
-        time.sleep(dur)
-        # Stop the note:
-        midiout.send_message(musx.note_off(2, key_4, vel))
+        # Inner loop to play the notes:
+        for i in range(repeat):
+            # Print and send the notes:
+            print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
+            midiout.send_message(musx.note_on(2, key_1, vel))
+            # Wait for duration:
+            time.sleep(dur)
+            midiout.send_message(musx.note_off(2, key_1, vel))
+            midiout.send_message(musx.note_on(2, key_2, vel))
+            # Wait for duration:
+            time.sleep(dur)
+            midiout.send_message(musx.note_off(2, key_2, vel))
+            midiout.send_message(musx.note_on(2, key_3, vel))
+            # Wait for duration:
+            time.sleep(dur)
+            midiout.send_message(musx.note_off(2, key_3, vel))
+            midiout.send_message(musx.note_on(2, key_4, vel))
+            # Wait for duration:
+            time.sleep(dur)
+            # Stop the note:
+            midiout.send_message(musx.note_off(2, key_4, vel))
         # Set up the after_time:
         time.sleep(after_time)
     # Test:
