@@ -121,9 +121,9 @@ def ornament_maker(chord_progression):
         pre_time = float(format(random.uniform(0, 4 - (dur * 4 * repeat)), '.2f'))
         after_time = float(format(4 - (dur * 4 * repeat) - pre_time, '.2f'))
         vel = musx.pick(30, 50, 60)
-        # Set up the pre_time:
+        # Set up and print the pre_time:
+        print(f"pre: {pre_time}")
         time.sleep(pre_time)
-        print(f"pre: {pre_time}, after: {after_time}")
         # Inner loop to play the notes:
         for i in range(repeat):
             # Select the notes:
@@ -149,7 +149,8 @@ def ornament_maker(chord_progression):
             time.sleep(dur)
             # Stop the note:
             midiout.send_message(musx.note_off(2, key_4, vel))
-        # Set up the after_time:
+        # Set up and print the after_time:
+        print(f"after: {after_time}")
         time.sleep(after_time)
     # Test:
     print("\nAll done!\n")
