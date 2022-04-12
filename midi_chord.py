@@ -21,8 +21,12 @@ chord_progression = [
 ] * 100
 # chord_progression = main()[0] * 100
 
+# Function to flatten the chord_progression:
+def flatten_list(chord_progression):
+    return keynum([item for sublist in chord_progression for item in sublist])
+
 # Flatten the chord_progression:
-melody = keynum([item for sublist in chord_progression for item in sublist])
+melody = flatten_list(chord_progression)
 
 # Test:
 # print('\nflatten_chord_progression: ' + str(melody))
