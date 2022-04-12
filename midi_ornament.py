@@ -103,7 +103,7 @@ def get_pool(chord_progression):
     return add_register(spell_pool(chord_progression))
 
 # Send out the MIDI note:
-def ornament(chord_progression):
+def ornament_maker(chord_progression):
     # Get the pool:
     pool_register = get_pool(chord_progression)
     # Loop through the pool:
@@ -122,11 +122,15 @@ def ornament(chord_progression):
         # Pick a random duration:
         # dur = musx.pick(3, 3.5, 4)
         # dur = musx.pick(0.8, 1.3, 1.6)
-        dur = musx.pick(0.11, 0.13, 0.15)
         # dur = musx.pick(1.4, 1.13, 1.5)
+        dur = musx.pick(0.11, 0.13, 0.15)
+        pre_time = float(format(random.uniform(0, 4 - (dur * 4)), '.2f'))
+        after_time = 4 - (dur * 4) - pre_time
         vel = musx.pick(30, 50, 60)
+        # Set up the pre_time:
+        time.sleep(pre_time)
         # Send it out:
-        print(f"iteration {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
+        print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
         midiout.send_message(musx.note_on(2, key_1, vel))
         # Wait for duration:
         time.sleep(dur)
@@ -144,13 +148,15 @@ def ornament(chord_progression):
         time.sleep(dur)
         # Stop the note:
         midiout.send_message(musx.note_off(2, key_4, vel))
+        # Set up the after_time:
+        time.sleep(after_time)
     # Test:
     print("\nAll done!\n")
     # Set midi synth back to piano:
     midiout.send_message(musx.program_change(0, 0))
 
 if __name__ == '__main__':
-    ornament(chord_progression)
+    ornament_maker(chord_progression)
 
 # Test:
 # print('\nflatten_chord_progression: ' + str(chord_progression))

@@ -25,8 +25,41 @@ chord_progression = [
 def flatten_list(chord_progression):
     return keynum([item for sublist in chord_progression for item in sublist])
 
-# Flatten the chord_progression:
-melody = flatten_list(chord_progression)
+def pad_maker(chord_progression):
+    # Flatten the chord_progression:
+    melody = flatten_list(chord_progression)
+    # Loop through the pool:
+    for i in range(len(melody)):
+        # Pick a random midi key number:
+        key_1 = melody[i][0]
+        key_2 = melody[i][1]
+        key_3 = melody[i][2]
+        key_4 = melody[i][3]
+        # Pick a random duration:
+        dur = 4
+        # dur = musx.pick(3, 3.5, 4)
+        # dur = musx.pick(0.8, 1.3, 1.6)
+        # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
+        # Send it out:
+        print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
+        midiout.send_message(musx.note_on(1, key_1, 80))
+        midiout.send_message(musx.note_on(1, key_2, 80))
+        midiout.send_message(musx.note_on(1, key_3, 80))
+        midiout.send_message(musx.note_on(1, key_4, 80))
+        # Wait for duration:
+        time.sleep(dur)
+        # Stop the note:
+        midiout.send_message(musx.note_off(1, key_1, 80))
+        midiout.send_message(musx.note_off(1, key_2, 80))
+        midiout.send_message(musx.note_off(1, key_3, 80))
+        midiout.send_message(musx.note_off(1, key_4, 80))
+    # Test:
+    print("\nAll done!\n")
+    # set midi synth back to piano
+    midiout.send_message(musx.program_change(0, 0))
+
+if __name__ == "__main__":
+    pad_maker(chord_progression)
 
 # Test:
 # print('\nflatten_chord_progression: ' + str(melody))
@@ -41,31 +74,3 @@ melody = flatten_list(chord_progression)
 
 # Real time MIDI output:
 # if control == True:
-for i in range(len(melody)):
-    # Pick a random midi key number:
-    key_1 = melody[i][0]
-    key_2 = melody[i][1]
-    key_3 = melody[i][2]
-    key_4 = melody[i][3]
-    # Pick a random duration:
-    dur = musx.pick(3, 3.5, 4)
-    # dur = musx.pick(0.8, 1.3, 1.6)
-    # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
-    # Send it out:
-    print(f"chord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}")
-    midiout.send_message(musx.note_on(1, key_1, 80))
-    midiout.send_message(musx.note_on(1, key_2, 80))
-    midiout.send_message(musx.note_on(1, key_3, 80))
-    midiout.send_message(musx.note_on(1, key_4, 80))
-    # Wait for duration:
-    time.sleep(dur)
-    # Stop the note:
-    midiout.send_message(musx.note_off(1, key_1, 80))
-    midiout.send_message(musx.note_off(1, key_2, 80))
-    midiout.send_message(musx.note_off(1, key_3, 80))
-    midiout.send_message(musx.note_off(1, key_4, 80))
-
-print("\nAll done!\n")
-
-# set midi synth back to piano
-midiout.send_message(musx.program_change(0, 0))

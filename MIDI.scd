@@ -11,7 +11,7 @@ SynthDef(\sin, {
 	var sig, env;
 	sig = {SinOsc.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
-	sig = sig * 3;
+	sig = sig * 4;
 	sig = sig.softclip;
 	sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(Env.sine(dur: 4.5, level: 0.4), doneAction:2);
