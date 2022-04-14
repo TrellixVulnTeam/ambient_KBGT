@@ -2,7 +2,8 @@ import time
 import random
 import rtmidi
 import musx
-from musx import keynum 
+from musx import keynum
+from musx import note
 from main_multi_solution import main
 
 from harmonizer_dict import note_to_number, number_to_note
@@ -117,7 +118,7 @@ def ornament_maker(chord_progression):
         # dur = musx.pick(0.8, 1.3, 1.6)
         # dur = musx.pick(1.4, 1.13, 1.5)
         dur = musx.pick(0.11, 0.13, 0.15)
-        repeat = random.randint(3, 6)
+        repeat = random.randint(2, 5)
         pre_time = float(format(random.uniform(0, 4 - (dur * 4 * repeat)), '.2f'))
         after_time = float(format(4 - (dur * 4 * repeat) - pre_time, '.2f'))
         vel = musx.pick(30, 50, 60)
