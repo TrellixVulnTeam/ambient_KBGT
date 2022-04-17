@@ -1,6 +1,3 @@
-import unittest
-import random
-
 from harmonizer_dict import note_accidental_range_to_midi as midi_num
 from harmonizer_dict import close_structure_dict as close_dict
 from harmonizer_dict import pre_assign_register as pre
