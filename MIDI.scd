@@ -31,7 +31,7 @@ SynthDef(\perc, {
 
 MIDIdef.noteOn(\on_1, {
 	arg val, num, chan, src;
-	Synth(\sin, [
+	Synth(\sin, [ //x = synth
 		\freq, num.midicps,
 		\harm, val.lincurve(0,127,1,40,9),
 		\amp, val.linlin(0,127,-40, -12).dbamp,
@@ -47,8 +47,8 @@ MIDIdef.noteOn(\on_2, {
 	]);
 }, chan: 2);
 
-MIDIdef.noteOff(\off_1, {
-	Synth(\sin, [
+/*MIDIdef.noteOff(\off_1, {
+	Synth(\sin, [// x.set
 		\gate, 0
 	]);
 }, chan: 1);
@@ -57,5 +57,5 @@ MIDIdef.noteOff(\off_2, {
 	Synth(\perc, [
 		\gate, 0
 	]);
-}, chan: 2);
+}, chan: 2);*/
 )

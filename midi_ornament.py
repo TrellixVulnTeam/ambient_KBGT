@@ -136,20 +136,20 @@ def ornament_maker(chord_progression):
             midiout.send_message(musx.note_on(2, key_1, vel))
             # Wait for duration:
             time.sleep(dur)
-            midiout.send_message(musx.note_off(2, key_1, vel))
+            # midiout.send_message(musx.note_off(2, key_1, vel))
             midiout.send_message(musx.note_on(2, key_2, vel))
             # Wait for duration:
             time.sleep(dur)
-            midiout.send_message(musx.note_off(2, key_2, vel))
+            # midiout.send_message(musx.note_off(2, key_2, vel))
             midiout.send_message(musx.note_on(2, key_3, vel))
             # Wait for duration:
             time.sleep(dur)
-            midiout.send_message(musx.note_off(2, key_3, vel))
+            # midiout.send_message(musx.note_off(2, key_3, vel))
             midiout.send_message(musx.note_on(2, key_4, vel))
             # Wait for duration:
             time.sleep(dur)
             # Stop the note:
-            midiout.send_message(musx.note_off(2, key_4, vel))
+            # midiout.send_message(musx.note_off(2, key_4, vel))
         # Set up and print the after_time:
         print(f"after: {after_time}")
         time.sleep(after_time)
