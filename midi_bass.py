@@ -1,14 +1,11 @@
 import time
 import random
-import threading
 import rtmidi
 import musx
 from musx import keynum
 
 from main_multi_solution import main
-from midi_chord import pad_maker
-from midi_ornament import ornament_maker
-from midi_bass import bass_line_maker
+from midi_chord import flatten_list
 
 # MIDI port set up:
 midiout = rtmidi.MidiOut()
@@ -25,14 +22,28 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 4
-chord_progression = main()[0] * 4
+# chord_progression = main()[0] * 4
 
-# Threading:
-pad = threading.Thread(target=pad_maker, args=[chord_progression])
-ornaments = threading.Thread(target=ornament_maker, args=[chord_progression])
-bass = threading.Thread(target=bass_line_maker, args=[chord_progression])
+def get_bass_line(chord_progression):
+    chord_progression = flatten_list(chord_progression)
+    bass_line = []
+    for chord in chord_progression:
+        bass_line.append(chord[0])
+    return bass_line
 
-# Call the variables:
-pad.start()
-ornaments.start()
-bass.start()
+def bass_line_maker(chord_progression):
+    bass_line = get_bass_line(chord_progression)
+    for note in bass_line:
+        key = note - 24
+        vel = musx.pick(40, 50, 60)
+        dur = 4
+        print(f"bass line: {key} vel: {vel}")
+        midiout.send_message(musx.note_on(3, key, vel))
+        time.sleep(dur)
+    # Test:
+    print("\nAll done!\n")
+    # set midi synth back to piano
+    midiout.send_message(musx.program_change(0, 0))
+
+if __name__ == '__main__':
+    bass_line_maker(chord_progression)

@@ -31,7 +31,7 @@ def pad_maker(chord_progression):
     # Loop through the pool:
     for i in range(len(melody)):
         # Pick a random midi key number:
-        key_1, key_2, key_3, key_4 = melody[i][0], melody[i][1], melody[i][2], melody[i][3]
+        key_1, key_2, key_3, key_4 = melody[i][0]-12, melody[i][1]-12, melody[i][2]-12, melody[i][3]-12
         # Pick a random duration:
         dur = 4
         # dur = musx.pick(0.5, 0.6, 0.7, 0.8)

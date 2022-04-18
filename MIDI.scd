@@ -12,7 +12,7 @@ SynthDef(\sin, {
 	sig = Splay.ar(sig);
 	sig = sig * 4;
 	sig = sig.softclip;
-	sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
+	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(Env.sine(dur: 5, level: 0.65), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
@@ -25,6 +25,17 @@ SynthDef(\perc, {
 	sig = Splay.ar(sig);
 	sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(Env.perc(0.02, 1, 0.7), doneAction:2);
+	sig = sig * env * amp;
+	Out.ar(out, sig);
+}).add;
+
+SynthDef(\saw, {
+	arg freq, harm=4, amp=0.1, out=0;
+	var sig, env;
+	sig = {LFSaw.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
+	sig = Splay.ar(sig);
+	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
+	env = EnvGen.ar(Env.sine(dur: 5, level: 0.15), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
 }).add;
@@ -46,6 +57,15 @@ MIDIdef.noteOn(\on_2, {
 		\amp, val.linlin(0,127,-40, -12).dbamp,
 	]);
 }, chan: 2);
+
+MIDIdef.noteOn(\on_3, {
+	arg val, num, chan, src;
+	Synth(\saw, [
+		\freq, num.midicps,
+		\harm, val.lincurve(0,127,1,40,9),
+		\amp, val.linlin(0,127,-40, -12).dbamp,
+	]);
+}, chan: 3);
 
 /*MIDIdef.noteOff(\off_1, {
 	Synth(\sin, [// x.set
