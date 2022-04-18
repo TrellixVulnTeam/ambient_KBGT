@@ -9,13 +9,11 @@ from step_def import step
 
 # Error check 1: four voices move in same direction
 def check_same_direction(connection):
-    this_chord = connection[0]
-    next_chord = connection[1]
+    this_chord, next_chord = connection[0], connection[1]
     direction = []
     # Get the list of difference by each note:
     for i in range(len(connection[0])):
-        this_note = this_chord[i]
-        next_note = next_chord[i]
+        this_note, next_note = this_chord[i], next_chord[i]
         difference = midi_num[next_note] - midi_num[this_note]
         direction.append(difference)
     # Check if all the elements are positive/negative:
@@ -33,8 +31,7 @@ def check_same_direction(connection):
 
 # Error check 2: voice overlap
 def check_voice_overlap(connection):
-    this_chord = connection[0]
-    next_chord = connection[1]
+    this_chord, next_chord = connection[0], connection[1]
     # if midi_num[next_chord[0]] < midi_num[this_chord[1]]:
     if  midi_num[next_chord[0]] < midi_num[this_chord[1]] and \
         midi_num[this_chord[0]] < midi_num[next_chord[1]] < midi_num[this_chord[2]] and \
@@ -52,17 +49,14 @@ def check_voice_overlap(connection):
 def check_direct_motion(connection):
     # For Debug:
     # print('def: check_direct_motion')
-    this_chord = connection[0]
-    next_chord = connection[1]
+    this_chord, next_chord = connection[0], connection[1]
     stepwise_check = ['minor second', 'major second']
     direct_motion_check = ['perfect unison', 'perfect octave', 'perfect fifth']
     # Pre-process the low note and top note:
     if midi_num[this_chord[3]] <= midi_num[next_chord[3]]:
-        low_note = this_chord[3]
-        top_note = next_chord[3]
+        low_note, top_note = this_chord[3], next_chord[3]
     else:
-        low_note = next_chord[3]
-        top_note = this_chord[3]
+        low_note, top_note = next_chord[3], this_chord[3]
     # Check the soprano voice leading (stepwise):
     if interval(low_note, top_note) in stepwise_check:
         result = False
@@ -88,8 +82,7 @@ def check_direct_motion(connection):
 def check_parallel_motion(connection):
     # For Debug:
     # print('def: check_parallel_motion')
-    this_chord = connection[0]
-    next_chord = connection[1]
+    this_chord, next_chord = connection[0], connection[1]
     parallel_motion_check = ['perfect unison', 'perfect fifth', 'perfect octave']
     # Pointer for low note:
     for i in range(len(this_chord) - 1):
@@ -114,11 +107,9 @@ def count_step(this_chord, next_chord):
     for i in range(1, len(this_chord)):
         # Pre-process the low note and top note:
         if midi_num[this_chord[i]] <= midi_num[next_chord[i]]:
-            low_note = this_chord[i]
-            top_note = next_chord[i]
+            low_note, top_note = this_chord[i], next_chord[i]
         else:
-            low_note = next_chord[i]
-            top_note = this_chord[i]
+            low_note, top_note = next_chord[i], this_chord[i]
         # Get the step:
         step_list.append(step(low_note, top_note))
     result = sum(step_list)
@@ -149,8 +140,7 @@ def rate_and_sort(legal_answer):
     # Iteration:
     for i in range(len(legal_answer)):
         for j in range(1, len(legal_answer[i])):
-            this_chord = legal_answer[i][j-1]
-            next_chord = legal_answer[i][j]
+            this_chord, next_chord = legal_answer[i][j-1], legal_answer[i][j]
             chord_rate = count_step(this_chord, next_chord)
             progression_rate.append(chord_rate)
         print('\nprogression_rate: ' + str(progression_rate))

@@ -31,14 +31,9 @@ def pad_maker(chord_progression):
     # Loop through the pool:
     for i in range(len(melody)):
         # Pick a random midi key number:
-        key_1 = melody[i][0]
-        key_2 = melody[i][1]
-        key_3 = melody[i][2]
-        key_4 = melody[i][3]
+        key_1, key_2, key_3, key_4 = melody[i][0]-12, melody[i][1]-12, melody[i][2]-12, melody[i][3]-12
         # Pick a random duration:
         dur = 4
-        # dur = musx.pick(3, 3.5, 4)
-        # dur = musx.pick(0.8, 1.3, 1.6)
         # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
         vel = musx.pick(20, 40, 50, 70)
         # Send it out:
@@ -49,11 +44,6 @@ def pad_maker(chord_progression):
         midiout.send_message(musx.note_on(1, key_4, vel))
         # Wait for duration:
         time.sleep(dur)
-        # Stop the note:
-        midiout.send_message(musx.note_off(1, key_1, vel))
-        midiout.send_message(musx.note_off(1, key_2, vel))
-        midiout.send_message(musx.note_off(1, key_3, vel))
-        midiout.send_message(musx.note_off(1, key_4, vel))
     # Test:
     print("\nAll done!\n")
     # set midi synth back to piano
