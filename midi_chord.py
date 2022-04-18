@@ -31,11 +31,11 @@ def pad_maker(chord_progression):
     # Loop through the pool:
     for i in range(len(melody)):
         # Pick a random midi key number:
-        key_1, key_2, key_3, key_4 = melody[i][0]-12, melody[i][1]-12, melody[i][2]-12, melody[i][3]-12
+        key_1, key_2, key_3, key_4 = melody[i][0], melody[i][1], melody[i][2], melody[i][3]
         # Pick a random duration:
         dur = 4
         # dur = musx.pick(0.5, 0.6, 0.7, 0.8)
-        vel = musx.pick(20, 40, 50, 70)
+        vel = musx.pick(30, 40, 50, 70)
         # Send it out:
         print(f"\nchord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
         midiout.send_message(musx.note_on(1, key_1, vel))
@@ -51,17 +51,3 @@ def pad_maker(chord_progression):
 
 if __name__ == "__main__":
     pad_maker(chord_progression)
-
-# Test:
-# print('\nflatten_chord_progression: ' + str(melody))
-# print(len(melody))
-
-# Control the player:
-# command = input('\nContinue? (y/n) ')
-# if command == 'y':
-#     control = True
-# else:
-#     sys.exit()
-
-# Real time MIDI output:
-# if control == True:
