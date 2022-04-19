@@ -31,8 +31,7 @@ def sec_convertor(glued_list):
 
 def section_namer(intro_outro, section_list):
     name_list = []
-    intro_name = ['intro', 'outro']
-    section_name = ['A', 'B', 'C', 'D']
+    intro_name, section_name = ['intro', 'outro'], ['A', 'B', 'C', 'D']
     list_length = len(intro_outro + section_list)
     for i in range(list_length):
         if i == 0:
@@ -50,9 +49,7 @@ def section_namer(intro_outro, section_list):
     return name_list
 
 def get_section(piece_list):
-    total_min = []
-    total_name = []
-    total_sec = []
+    total_min, total_name, total_sec = [], [], []
     for number in piece_list:
         intro_outro = get_duration(2, number*0.05, number*0.03, number*0.1)
         # print(intro_outro, str(len(intro_outro)))
