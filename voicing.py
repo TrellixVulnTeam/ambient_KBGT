@@ -143,12 +143,12 @@ def rate_and_sort(legal_answer):
             this_chord, next_chord = legal_answer[i][j-1], legal_answer[i][j]
             chord_rate = count_step(this_chord, next_chord)
             progression_rate.append(chord_rate)
-        print('\nprogression_rate: ' + str(progression_rate))
+        # print('\nprogression_rate: ' + str(progression_rate))
         temp_rate = sum(progression_rate)
-        print('temp_rate: ' + str(temp_rate))
+        # print('temp_rate: ' + str(temp_rate))
         progression_rate = []
         rate_list.append(temp_rate)
-    print('\nrate_list: ' + str(rate_list))
+    # print('\nrate_list: ' + str(rate_list))
     # Combine rate and chord progression into dict:
     rate = dict()
     for k in range(len(rate_list)):
