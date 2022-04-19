@@ -13,7 +13,7 @@ SynthDef(\sin, {
 	sig = sig * 4;
 	sig = sig.softclip;
 	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
-	env = EnvGen.ar(Env.sine(dur: 5, level: 0.65), doneAction:2);
+	env = EnvGen.ar(Env.sine(dur: 5, level: 0.8), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
 }).add;
