@@ -72,7 +72,7 @@ def get_section(piece_list):
     return total_min, total_name, total_sec
 
 if __name__ == '__main__':
-    paragraph = random.randint(4, 6)
+    paragraph = random.randint(4, 7)
     print('\nparagraph:', str(paragraph))
     piece_list = get_duration(paragraph, 10, 8, 12)
     print('piece_list:', str(piece_list), str(sum(piece_list)), '\n')
