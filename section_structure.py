@@ -10,7 +10,7 @@ chord_progression = [
 ]
 chord_progression = main()[0]
 
-def get_intro_dur(total_dur, paragraph, average, minimum, maximum):
+def get_section_dur(total_dur, paragraph, average, minimum, maximum):
     while True:
         if isinstance(average, int):
             list = [random.randint(minimum, maximum) for i in range(paragraph)]
@@ -20,7 +20,7 @@ def get_intro_dur(total_dur, paragraph, average, minimum, maximum):
         if current_average == average and sum(list) == total_dur:
             return list
 
-def get_intro_chord(list, chord_progression):
+def get_section_chord(list, chord_progression):
     intro_chord = []
     chord = flatten_list(chord_progression)
     # print(chord)
@@ -31,5 +31,5 @@ def get_intro_chord(list, chord_progression):
     return intro_chord
 
 if __name__ == '__main__':
-    list = get_intro_dur(42, 7, 6, 3, 15); print(list, len(list))
-    chord = get_intro_chord(list, chord_progression); print(chord, len(chord))
+    list = get_section_dur(42, 7, 6, 3, 15); print(list, len(list))
+    chord = get_section_chord(list, chord_progression); print(chord, len(chord))
