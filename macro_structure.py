@@ -70,10 +70,10 @@ def get_section(piece_list):
 
 if __name__ == '__main__':
     paragraph = random.randint(5, 8)
-    piece_list = get_duration(paragraph, 10, 8, 12)
-    section = get_section(piece_list)
     print('\nparagraph:', str(paragraph))
+    piece_list = get_duration(paragraph, 10, 8, 12)
     print('piece_list:', str(piece_list), str(sum(piece_list)), '\n')
+    section = get_section(piece_list)
     print('total_min:', section[0], len(section[0]),'\n')
     print('total_name:', section[1], len(section[1]),'\n')
     print('total_sec:', section[2], len(section[2]))
