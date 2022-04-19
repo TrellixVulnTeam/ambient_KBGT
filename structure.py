@@ -40,7 +40,7 @@ def section_namer(intro_outro, section_list):
             value = random.choice(['A', 'B'])
             name_list.append(value); prev = value; continue
         if 2 <= i <= list_length - 2:
-            while True:
+            while True: 
                 value = random.choice(section_name)
                 if value != prev:
                     name_list.append(value); prev = value; break
