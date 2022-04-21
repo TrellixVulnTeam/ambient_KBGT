@@ -38,9 +38,9 @@ list = get_section_dur(total_dur, paragraph, 4, 3, 10)
 chord = get_section_chord(list, chord_progression)
 pool = pool_tailer(list, chord_progression)
 
-print(list, len(list))
-print(chord, len(chord))
-print(pool, len(pool))
+print('\n', list, len(list), '\n')
+print(chord, len(chord), '\n')
+print(pool, len(pool), '\n')
 
 def intro_pad(list, chord):
     # Send the pad:
