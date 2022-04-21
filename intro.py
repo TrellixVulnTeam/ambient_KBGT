@@ -34,7 +34,6 @@ def pool_tailer(list, chord_progession):
 
 total_dur = 36
 paragraph = 9
-
 list = get_section_dur(total_dur, paragraph, 4, 3, 10)
 chord = get_section_chord(list, chord_progression)
 pool = pool_tailer(list, chord_progression)
