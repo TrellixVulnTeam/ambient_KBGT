@@ -133,19 +133,19 @@ def ornament_maker(chord_progression):
             key_1, key_2, key_3, key_4 = keynum(note_selected[0]), keynum(note_selected[1]), keynum(note_selected[2]), keynum(note_selected[3])
             # Print and send the notes:
             print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
-            midiout.send_message(musx.note_on(2, key_1, vel))
+            midiout.send_message(musx.note_on(5, key_1, vel))
             # Wait for duration:
             time.sleep(dur)
             # midiout.send_message(musx.note_off(2, key_1, vel))
-            midiout.send_message(musx.note_on(2, key_2, vel))
+            midiout.send_message(musx.note_on(5, key_2, vel))
             # Wait for duration:
             time.sleep(dur)
             # midiout.send_message(musx.note_off(2, key_2, vel))
-            midiout.send_message(musx.note_on(2, key_3, vel))
+            midiout.send_message(musx.note_on(5, key_3, vel))
             # Wait for duration:
             time.sleep(dur)
             # midiout.send_message(musx.note_off(2, key_3, vel))
-            midiout.send_message(musx.note_on(2, key_4, vel))
+            midiout.send_message(musx.note_on(5, key_4, vel))
             # Wait for duration:
             time.sleep(dur)
             # Stop the note:

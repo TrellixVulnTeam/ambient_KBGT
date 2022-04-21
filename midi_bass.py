@@ -34,12 +34,13 @@ def get_bass_line(chord_progression):
 def bass_line_maker(chord_progression):
     bass_line = get_bass_line(chord_progression)
     for note in bass_line:
-        key = note - 24
+        key = note
         vel = musx.pick(40, 50, 60)
         dur = 4
         print(f"bass line: {key} vel: {vel}")
-        midiout.send_message(musx.note_on(3, key, vel))
+        midiout.send_message(musx.note_on(6, key, vel))
         time.sleep(dur)
+        midiout.send_message(musx.note_off(6, key, vel))
     # Test:
     print("\nAll done!\n")
     # set midi synth back to piano

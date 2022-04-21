@@ -25,7 +25,7 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 10
-chord_progression = main()[0] * 10
+# chord_progression = main()[0] * 10
 
 # Threading:
 pad = threading.Thread(target=pad_maker, args=[chord_progression])

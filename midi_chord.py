@@ -39,11 +39,15 @@ def pad_maker(chord_progression):
         # Send it out:
         print(f"\nchord {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
         midiout.send_message(musx.note_on(1, key_1, vel))
-        midiout.send_message(musx.note_on(1, key_2, vel))
-        midiout.send_message(musx.note_on(1, key_3, vel))
-        midiout.send_message(musx.note_on(1, key_4, vel))
+        midiout.send_message(musx.note_on(2, key_2, vel))
+        midiout.send_message(musx.note_on(3, key_3, vel))
+        midiout.send_message(musx.note_on(4, key_4, vel))
         # Wait for duration:
         time.sleep(dur)
+        midiout.send_message(musx.note_off(1, key_1, vel))
+        midiout.send_message(musx.note_off(2, key_2, vel))
+        midiout.send_message(musx.note_off(3, key_3, vel))
+        midiout.send_message(musx.note_off(4, key_4, vel))
     # Test:
     print("\nAll done!\n")
     # set midi synth back to piano
