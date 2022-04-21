@@ -40,7 +40,7 @@ pool = pool_tailer(list, chord_progression)
 
 print('\n', list, len(list), '\n')
 print(chord, len(chord), '\n')
-print(pool, len(pool), '\n')
+print(pool, len(pool))
 
 def intro_pad(list, chord):
     # Send the pad:
