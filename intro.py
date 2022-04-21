@@ -64,8 +64,8 @@ def intro_note(list, pool):
         for j in range(note_select):
             note = keynum(random.choice(pool[i]))
             vel = musx.pick(40, 50, 70)
-            dur = list[i]/note_select
-            print(f"\nnote {i+1}, note: {note}, dur: {dur}, vel: {vel}")
+            dur = round(list[i]/note_select, 2)
+            print(f"note {i+1}, note: {note}, dur: {dur}, vel: {vel}")
             midiout.send_message(musx.note_on(5, note, vel))
             time.sleep(dur)
 
