@@ -46,7 +46,7 @@ def section_namer(intro_outro, section_list):
                     name_list.append(value); prev = value; break
         if i == list_length - 1:
             name_list.append(intro_name[-1]); break
-    return name_list, str(len(name_list))
+    return name_list
 
 def get_section(piece_list):
     total_min, total_name, total_sec = [], [], []

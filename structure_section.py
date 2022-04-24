@@ -3,6 +3,7 @@ from functools import reduce
 from midi_chord import flatten_list
 from midi_ornament import get_pool
 from main_multi_solution import main
+from structure_macro import get_duration, get_section
 
 chord_progression = [
     [['c3', 'g3', 'eb4', 'bb4'], ['c3', 'c4', 'd4', 'g4'], ['g3', 'b3', 'd4', 'g4']], 
@@ -39,5 +40,8 @@ def pool_tailer(list, chord_progession):
         return temp_pool*(len(list)//len(temp_pool))+temp_pool[:len(list)%len(temp_pool)]
 
 if __name__ == '__main__':
+    paragraph = random.randint(5, 8); print('\nparagraph:', str(paragraph))
+    total_time = get_duration(paragraph, 10, 8, 12); print('total_time:', str(total_time), str(sum(total_time)), '\n')
+    section = get_section(total_time); print('total_min:', section[0], len(section[0]),'\n', 'total_name:', section[1], len(section[1]),'\n', 'total_sec:', section[2], len(section[2]))
     list = get_section_dur(42, 7, 6, 3, 15); print(list, len(list))
     chord = get_section_chord(list, chord_progression); print(chord, len(chord))
