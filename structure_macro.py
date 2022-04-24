@@ -58,13 +58,16 @@ def get_section(piece_list):
         section_list = get_duration(sec_num, sec_avg, sec_min, sec_max)
         # print(section_list, str(len(section_list)))
 
-        glued_list = glue_list(intro_outro, section_list); print(glued_list, str(len(glued_list)))
+        glued_list = glue_list(intro_outro, section_list) 
+        # print(glued_list, str(len(glued_list)))
         total_min.append(glued_list)
 
-        name_list = section_namer(intro_outro, section_list); print(name_list, str(len(name_list)))
+        name_list = section_namer(intro_outro, section_list)
+        # print(name_list, str(len(name_list)))
         total_name.append(name_list)
 
-        sec_list = sec_convertor(glued_list); print(sec_list, str(len(sec_list)), '\n')
+        sec_list = sec_convertor(glued_list)
+        # print(sec_list, str(len(sec_list)), '\n')
         total_sec.append(sec_list)
     return total_min, total_name, total_sec
 
