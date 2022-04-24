@@ -1,6 +1,7 @@
 import random
 from functools import reduce
 from midi_chord import flatten_list
+from midi_ornament import get_pool
 from main_multi_solution import main
 
 chord_progression = [
@@ -29,6 +30,13 @@ def get_section_chord(list, chord_progression):
     else:
         intro_chord = chord*(len(list)//len(chord))+chord[:len(list)%len(chord)]
     return intro_chord
+
+def pool_tailer(list, chord_progession):
+    temp_pool = get_pool(chord_progression)
+    if len(list) <= len(temp_pool):
+        return temp_pool[:len(list)]
+    else:
+        return temp_pool*(len(list)//len(temp_pool))+temp_pool[:len(list)%len(temp_pool)]
 
 if __name__ == '__main__':
     list = get_section_dur(42, 7, 6, 3, 15); print(list, len(list))

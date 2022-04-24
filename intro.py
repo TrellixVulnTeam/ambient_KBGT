@@ -5,8 +5,7 @@ import musx
 import threading
 from musx import keynum
 from main_multi_solution import main
-from midi_ornament import get_pool
-from structure_section import get_section_dur, get_section_chord
+from structure_section import get_section_dur, get_section_chord, pool_tailer
 
 # MIDI port set up:
 midiout = rtmidi.MidiOut()
@@ -22,15 +21,8 @@ chord_progression = [
     [['c3', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
-]
+] * 4
 # chord_progression = main()[0] * 10
-
-def pool_tailer(list, chord_progession):
-    temp_pool = get_pool(chord_progression)
-    if len(list) <= len(temp_pool):
-        return temp_pool[:len(list)]
-    else:
-        return temp_pool*(len(list)//len(temp_pool))+temp_pool[:len(list)%len(temp_pool)]
 
 total_dur = 36
 paragraph = 9
