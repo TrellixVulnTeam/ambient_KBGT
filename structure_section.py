@@ -11,7 +11,7 @@ chord_progression = [
     [['c3', 'g4', 'eb5', 'bb5'], ['c3', 'c5', 'd5', 'g5'], ['g3', 'b4', 'd5', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['g3', 'd4', 'b4', 'g5']]
 ]
-chord_progression = main()[0]
+# chord_progression = main()[0]
 
 def get_section_dur(total_dur, paragraph, average, minimum, maximum):
     while True:
