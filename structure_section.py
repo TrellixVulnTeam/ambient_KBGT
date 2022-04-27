@@ -1,6 +1,5 @@
 import random
 from timeit import default_timer as timer
-from musx import keynum
 from functools import reduce
 from midi_chord import flatten_list
 from midi_ornament import get_pool
