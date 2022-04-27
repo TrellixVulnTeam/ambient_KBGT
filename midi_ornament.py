@@ -101,7 +101,7 @@ def add_register(chromatic_pool):
 
 # Get the pool:
 def get_pool(chord_progression):
-    return add_register(spell_pool(chord_progression))
+    return keynum(add_register(spell_pool(chord_progression)))
 
 # Send out the MIDI note:
 def ornament_maker(chord_progression):
@@ -130,7 +130,7 @@ def ornament_maker(chord_progression):
             # Select the notes:
             note_selected = random.choices(note_pool, weights=(possibility), k = 4)
             # Pick a random midi key number:
-            key_1, key_2, key_3, key_4 = keynum(note_selected[0]), keynum(note_selected[1]), keynum(note_selected[2]), keynum(note_selected[3])
+            key_1, key_2, key_3, key_4 = note_selected[0], note_selected[1], note_selected[2], note_selected[3]
             # Print and send the notes:
             print(f"ornament {i+1}, key: {key_1}, {key_2}, {key_3}, {key_4}, dur: {dur}, vel: {vel}")
             midiout.send_message(musx.note_on(5, key_1, vel))

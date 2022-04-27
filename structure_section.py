@@ -1,5 +1,6 @@
 import random
 from timeit import default_timer as timer
+from musx import keynum
 from functools import reduce
 from midi_chord import flatten_list
 from midi_ornament import get_pool
@@ -24,14 +25,14 @@ def get_section_dur(total_dur, paragraph, average, minimum, maximum):
             return list
 
 def get_section_chord(list, chord_progression):
-    intro_chord = []
+    section_chord = []
     chord = flatten_list(chord_progression)
     # print(chord)
     if len(list) <= len(chord):
-        intro_chord = chord[:len(list)]
+        section_chord = chord[:len(list)]
     else:
-        intro_chord = chord*(len(list)//len(chord))+chord[:len(list)%len(chord)]
-    return intro_chord
+        section_chord = chord*(len(list)//len(chord))+chord[:len(list)%len(chord)]
+    return section_chord
 
 def pool_tailer(list, chord_progession):
     temp_pool = get_pool(chord_progression)
@@ -67,6 +68,20 @@ def get_time_frame(total_sec):
             total_time_frame.append(temp_time_frame)
     return total_time_frame
 
+def get_chord(total_time_frame, chord_progression):
+    total_chord = []
+    for list in total_time_frame:
+        section_chord = get_section_chord(list, chord_progression)
+        total_chord.append(section_chord)
+    return total_chord
+
+def get_all_pool(total_time_frame, chord_progression):
+    total_pool = []
+    for list in total_time_frame:
+        section_pool = pool_tailer(list, chord_progression)
+        total_pool.append(section_pool)
+    return total_pool
+
 if __name__ == '__main__':
     paragraph = random.randint(5, 8); print('\nparagraph:', str(paragraph))
     total_time = get_duration(paragraph, 10, 8, 12); print('total_paragraph:', str(total_time), str(sum(total_time)), '\n')
@@ -75,5 +90,7 @@ if __name__ == '__main__':
     # chord = get_section_chord(list, chord_progression); print(chord, len(chord))
     start = timer()
     total_section = get_flatten_list(section[1]); print('total_section:', total_section, len(total_section), '\n')
-    total_time_frame = get_time_frame(section[2]); print('total_time_frame:', total_time_frame, len(total_time_frame))
+    total_time_frame = get_time_frame(section[2]); print('total_time_frame:', total_time_frame, len(total_time_frame), '\n')
+    total_chord = get_chord(total_time_frame, chord_progression); print('total_chord:', total_chord, len(total_chord), '\n')
+    total_pool = get_all_pool(total_time_frame, chord_progression); print('total_pool:', total_pool, len(total_pool))
     end = timer(); print('\nRunning time:', str(round((end - start), 2)) + 's\n')
