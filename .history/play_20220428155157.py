@@ -249,7 +249,7 @@ def pad(total_section, total_time_frame, total_chord):
                     if m == len(note_time)-1:
                         for n in range(len(phrase_chord)):
                             midiout.send_message(musx.note_off(n+1, phrase_chord[n], vel))
-                print('—————————————————— next phrase (chord) ——————————————————\n') 
+                print('—————————————————— next phrase ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
 
 # if __name__ == '__main__':

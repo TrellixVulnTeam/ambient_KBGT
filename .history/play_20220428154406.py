@@ -107,7 +107,7 @@ def ornament(total_section, total_time_frame, total_pool):
                     midiout.send_message(musx.note_off(6, note, vel))
                 time.sleep(post_time)
                 print(f'post_time: {post_time}\n')
-                print('—————————————————— next phrase (melody) ——————————————————\n') 
+                print('—————————————————— next phrase ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
         if current_section == 'C' or current_section == 'D':
             print('—————————————————— now playing:', current_section, '\n')
@@ -155,7 +155,7 @@ def ornament(total_section, total_time_frame, total_pool):
                     time.sleep(note_time[m])
                 time.sleep(post_time)
                 print(f'post_time: {post_time}\n')
-                print('—————————————————— next phrase (melody) ——————————————————\n') 
+                print('—————————————————— next phrase ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
 
 def pad(total_section, total_time_frame, total_chord):
@@ -193,7 +193,7 @@ def pad(total_section, total_time_frame, total_chord):
                 print(f'chord_last: {round(phrase_time - sum(note_time), 2)}\n')
                 for n in range(len(note_time)):
                     midiout.send_message(musx.note_off(n+1, phrase_chord[n], vel))
-                print('—————————————————— next phrase (chord) ——————————————————\n') 
+                print('—————————————————— next phrase ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
         if current_section == 'A' or current_section == 'B':
             print('—————————————————— now playing:', current_section, '\n')
@@ -214,7 +214,7 @@ def pad(total_section, total_time_frame, total_chord):
                 time.sleep(phrase_time)
                 for k in range(len(phrase_chord)):
                     midiout.send_message(musx.note_off(k+1, phrase_chord[k], vel))
-                print('—————————————————— next phrase (chord) ——————————————————\n') 
+                print('—————————————————— next phrase ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
         if current_section == 'C' or current_section == 'D':
             print('—————————————————— now playing:', current_section, '\n')
@@ -249,7 +249,7 @@ def pad(total_section, total_time_frame, total_chord):
                     if m == len(note_time)-1:
                         for n in range(len(phrase_chord)):
                             midiout.send_message(musx.note_off(n+1, phrase_chord[n], vel))
-                print('—————————————————— next phrase (chord) ——————————————————\n') 
+                print('—————————————————— next phrase ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
 
 # if __name__ == '__main__':
