@@ -244,7 +244,7 @@ def pad(total_section, total_time_frame, total_chord):
                             midiout.send_message(musx.note_on(5, phrase_chord[n], vel))
                         else:
                             midiout.send_message(musx.note_on(n+1, phrase_chord[n], vel))
-                    print(f'chord {j+1}, note: {phrase_chord[0], phrase_chord[1], phrase_chord[2], phrase_chord[3]}')
+                    print(f'chord {j+1}, note: {phrase_chord[0], phrase_chord[1], phrase_chord[2], phrase_chord[3]} \n')
                     time.sleep(note_time[m])
                     if m == len(note_time)-1:
                         for n in range(len(phrase_chord)):

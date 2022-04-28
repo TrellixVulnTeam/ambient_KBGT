@@ -93,16 +93,16 @@ def ornament(total_section, total_time_frame, total_pool):
                     if k == note_select-1:
                         temp_note_time = round(note_span - sum(note_time), 2)
                     note_time.append(temp_note_time)
-                print('note_time:', note_time)
+                print('note_time:', note_time, '\n')
                 print('check:', round((sum(note_time) + pre_time + post_time), 2), phrase_time, '\n')
                 print('—————————————————— sending notes\n')
                 time.sleep(pre_time)
-                print(f'pre_time: {pre_time}')
+                print(f'pre_time: {pre_time}\n')
                 for m in range(note_select):
                     note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
                     vel = random.randint(30, 70)
                     midiout.send_message(musx.note_on(6, note, vel))
-                    print(f'melody {m+1}, note: {note}, vel: {vel}')
+                    print(f'melody {m+1}, note: {note}, vel: {vel}\n')
                     time.sleep(note_time[m])
                     midiout.send_message(musx.note_off(6, note, vel))
                 time.sleep(post_time)
@@ -114,8 +114,8 @@ def ornament(total_section, total_time_frame, total_pool):
             for j in range(len(current_time_frame)):
                 phrase_time = current_time_frame[j]
                 phrase_pool = current_pool[j]
-                print('phrase_time:', phrase_time)
-                print('phrase_pool:', phrase_pool)
+                print('phrase_time:', phrase_time, '\n')
+                print('phrase_pool:', phrase_pool, '\n')
                 if phrase_time < 5:
                     note_select = random.randint(3, 6)
                 elif 5 <= phrase_time < 10:
@@ -126,15 +126,15 @@ def ornament(total_section, total_time_frame, total_pool):
                     note_select = random.randint(7, 15)
                 else:
                     note_select = random.randint(10, 25)
-                print('note_select:', note_select)
+                print('note_select:', note_select, '\n')
                 pre_post_ratio = random.randint(10, 50) / 100
-                print('pre_post_ratio:', pre_post_ratio)
+                print('pre_post_ratio:', pre_post_ratio, '\n')
                 notes_ratio = round(1 - pre_post_ratio, 2)
-                print('notes_ratio:', notes_ratio)
+                print('notes_ratio:', notes_ratio, '\n')
                 pre_time = round(phrase_time * round(random.uniform(0.01, pre_post_ratio*0.7), 2), 2)
-                print('pre_time:', pre_time)
+                print('pre_time:', pre_time, '\n')
                 post_time = round(phrase_time * pre_post_ratio - pre_time, 2)
-                print('post_time:', post_time)
+                print('post_time:', post_time, '\n')
                 note_span = phrase_time * notes_ratio
                 note_time = []
                 for k in range(note_select):
@@ -142,16 +142,16 @@ def ornament(total_section, total_time_frame, total_pool):
                     if k == note_select-1:
                         temp_note_time = round(note_span - sum(note_time), 2)
                     note_time.append(temp_note_time)
-                print('note_time:', note_time)
+                print('note_time:', note_time, '\n')
                 print('check:', round((sum(note_time)+ pre_time + post_time), 2), phrase_time, '\n')
                 print('—————————————————— Sending notes\n')
                 time.sleep(pre_time)
-                print(f'pre_time: {pre_time}')
+                print(f'pre_time: {pre_time}\n')
                 for m in range(note_select):
                     note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
                     vel = random.randint(30, 70)
                     midiout.send_message(musx.note_on(7, note, vel))
-                    print(f'melody {m+1}, note: {note}, vel: {vel}')
+                    print(f'melody {m+1}, note: {note}, vel: {vel}\n')
                     time.sleep(note_time[m])
                 time.sleep(post_time)
                 print(f'post_time: {post_time}\n')
@@ -171,8 +171,8 @@ def pad(total_section, total_time_frame, total_chord):
             for j in range(len(current_time_frame)):
                 phrase_time = current_time_frame[j]
                 phrase_chord = current_chord[j]
-                print('phrase_time:', phrase_time)
-                print('phrase_chord:', phrase_chord)
+                print('phrase_time:', phrase_time, '\n')
+                print('phrase_chord:', phrase_chord, '\n')
                 note_time = []
                 for k in range(len(phrase_chord)):
                     if k == 0:
@@ -180,7 +180,7 @@ def pad(total_section, total_time_frame, total_chord):
                     else:
                         temp_note_time = round(random.uniform(0.01, (phrase_time-sum(note_time))/(len(phrase_chord))), 2)
                     note_time.append(temp_note_time)
-                print('note_time:', note_time)
+                print('note_time:', note_time, '\n')
                 print('check:', round(sum(note_time), 2), phrase_time, round(sum(note_time), 2) <= phrase_time, '\n')
                 print('—————————————————— sending chords\n')
                 for m in range(len(note_time)):
@@ -188,7 +188,7 @@ def pad(total_section, total_time_frame, total_chord):
                     note = phrase_chord[m]
                     vel = random.randint(30, 70)
                     midiout.send_message(musx.note_on(m+1, note, vel))
-                    print(f'chord {m+1}, note: {note}, vel: {vel}, chan: {m+1}')
+                    print(f'chord {m+1}, note: {note}, vel: {vel}, chan: {m+1}\n')
                 time.sleep(phrase_time - sum(note_time))
                 print(f'chord_last: {round(phrase_time - sum(note_time), 2)}\n')
                 for n in range(len(note_time)):
@@ -200,7 +200,7 @@ def pad(total_section, total_time_frame, total_chord):
             for j in range(len(current_time_frame)):
                 phrase_time = current_time_frame[j]
                 phrase_chord = current_chord[j]
-                print('phrase_time:', phrase_time)
+                print('phrase_time:', phrase_time, '\n')
                 print('phrase_chord:', phrase_chord, '\n')
                 print('—————————————————— sending chords\n')
                 for k in range(len(phrase_chord)):
@@ -210,7 +210,7 @@ def pad(total_section, total_time_frame, total_chord):
                     elif current_section == 'B':
                         vel = random.randint(30, 50)
                     midiout.send_message(musx.note_on(k+1, note, vel))
-                    print(f'chord {j+1}, note: {note}, vel: {vel}, chan: {k+1}')
+                    print(f'chord {j+1}, note: {note}, vel: {vel}, chan: {k+1}\n')
                 time.sleep(phrase_time)
                 for k in range(len(phrase_chord)):
                     midiout.send_message(musx.note_off(k+1, phrase_chord[k], vel))
@@ -221,17 +221,17 @@ def pad(total_section, total_time_frame, total_chord):
             for j in range(len(current_time_frame)):
                 phrase_time = current_time_frame[j]
                 phrase_chord = current_chord[j]
-                print('phrase_time:', phrase_time)
-                print('phrase_chord:', phrase_chord)
+                print('phrase_time:', phrase_time, '\n')
+                print('phrase_chord:', phrase_chord, '\n')
                 perc_select = random.randint(1, 5)
-                print('perc_select:', perc_select)
+                print('perc_select:', perc_select, '\n')
                 note_time = []
                 for k in range(perc_select):
                     temp_note_time = round(random.uniform(0.01, (phrase_time*0.4-sum(note_time))/(perc_select-k)), 2)
                     note_time.append(temp_note_time)
                 last_note_time = round(phrase_time - sum(note_time), 2)
                 note_time.append(last_note_time)
-                print('note_time:', note_time)
+                print('note_time:', note_time, '\n')
                 print('check:', round(sum(note_time), 2), phrase_time, round(sum(note_time), 2) == phrase_time, '\n')
                 print('—————————————————— sending chords\n')
                 for m in range(len(note_time)):
@@ -244,7 +244,7 @@ def pad(total_section, total_time_frame, total_chord):
                             midiout.send_message(musx.note_on(5, phrase_chord[n], vel))
                         else:
                             midiout.send_message(musx.note_on(n+1, phrase_chord[n], vel))
-                    print(f'chord {j+1}, note: {phrase_chord[0], phrase_chord[1], phrase_chord[2], phrase_chord[3]}')
+                    print(f'chord {j+1}, note: {phrase_chord[0], phrase_chord[1], phrase_chord[2], phrase_chord[3]} \n')
                     time.sleep(note_time[m])
                     if m == len(note_time)-1:
                         for n in range(len(phrase_chord)):
