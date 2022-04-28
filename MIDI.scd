@@ -34,11 +34,11 @@ SynthDef(\sin_perc, {
 }).add;
 
 SynthDef(\saw, {
-	arg freq=440, harm=4, amp=0.1, out=0, gate=1;
+	arg freq=440, harm=4, amp=0.4, out=0, gate=1;
 	var sig, env;
 	sig = {Pulse.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
-	sig = RLPF.ar(sig, (800 * harm).clip(20,20000), 0.5);
+	sig = RLPF.ar(sig, (600 * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(
 		Env.new([0, 0.7, 0.1, 0], [3, 3, 1.5], 'lin', releaseNode: 2),
 		gate: gate,
@@ -53,8 +53,8 @@ SynthDef(\saw_perc, {
 	var sig, env;
 	sig = {LFSaw.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
-	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
-	env = EnvGen.ar(Env.perc(0.02, 1, 0.7), doneAction:2);
+	sig = RLPF.ar(sig, (700 * harm).clip(20,20000), 0.5);
+	env = EnvGen.ar(Env.perc(0.3, 2, 0.3), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
 }).add;
