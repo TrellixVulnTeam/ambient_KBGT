@@ -6,7 +6,7 @@ MIDIIn.connectAll;
 MIDIFunc.trace(true);
 
 SynthDef(\sin, {
-	arg freq, harm=4, amp=0.1, out=0, gate=1;
+	arg freq, harm=4, amp=0.02, out=0, gate=1;
 	var sig, env;
 	sig = {SinOsc.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
@@ -14,7 +14,7 @@ SynthDef(\sin, {
 	// sig = sig.softclip;
 	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(
-		Env.new([0, 0.8, 0.1, 0], [3, 3, 1], 'lin', releaseNode: 2),
+		Env.new([0, 0.3, 0.1, 0], [3, 3, 1], 'lin', releaseNode: 2),
 		gate: gate,
 		doneAction: 2
 	);

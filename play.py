@@ -24,7 +24,7 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 4
-chord_progression = main()[0] * 4
+# chord_progression = main()[0] * 4
 
 # Get the structure of the piece:
 paragraph = random.randint(5, 8)
@@ -96,7 +96,7 @@ def ornament(total_section, total_time_frame, total_pool):
                     note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
                     vel = random.randint(30, 70)
                     midiout.send_message(musx.note_on(6, note, vel))
-                    print(f'melody{m+1}, note: {note}, vel: {vel}\n')
+                    print(f'melody {m+1}, note: {note}, vel: {vel}\n')
                     time.sleep(note_time[m])
                     midiout.send_message(musx.note_off(6, note, vel))
                 time.sleep(post_time)
@@ -111,45 +111,60 @@ def pad(total_section, total_time_frame, total_chord):
         print('current_section:', current_section, '\n')
         print('current_time_frame:', current_time_frame, len(current_time_frame), '\n')
         print('current_chord:', current_chord, len(current_chord), '\n')
-        if current_section == 'intro':
-            print('—————————————————— now playing:', current_section, '\n')
+        # if current_section == 'intro':
+        #     print('—————————————————— now playing: intro', '\n')
+        #     for j in range(len(current_time_frame)):
+        #         phrase_time = current_time_frame[j]
+        #         phrase_chord = current_chord[j]
+        #         print('phrase_time:', phrase_time, '\n')
+        #         print('phrase_chord:', phrase_chord, '\n')
+        #         note_time = []
+        #         for k in range(len(phrase_chord)):
+        #             if k == 0:
+        #                 temp_note_time = round(random.uniform(0.01, 0.8), 2)
+        #             else:
+        #                 temp_note_time = round(random.uniform(0.01, (phrase_time-sum(note_time))/(len(phrase_chord))), 2)
+        #             note_time.append(temp_note_time)
+        #         print('note_time:', note_time, '\n')
+        #         print('check:', round(sum(note_time), 2), phrase_time, round(sum(note_time), 2) <= phrase_time, '\n')
+        #         print('—————————————————— sending chords\n')
+        #         for m in range(len(note_time)):
+        #             time.sleep(note_time[m])
+        #             note = phrase_chord[m]
+        #             vel = random.randint(30, 70)
+        #             midiout.send_message(musx.note_on(m+1, note, vel))
+        #             print(f'chord {m+1}, note: {note}, vel: {vel}, chan: {m+1}\n')
+        #         time.sleep(phrase_time - sum(note_time))
+        #         print(f'chord_last: {round(phrase_time - sum(note_time), 2)}\n')
+        #         for n in range(len(note_time)):
+        #             midiout.send_message(musx.note_off(n+1, phrase_chord[n], vel))
+        #         print('—————————————————— phrase finished\n')
+        if current_section == 'A':
+            print('—————————————————— now playing: A section', '\n')
             for j in range(len(current_time_frame)):
                 phrase_time = current_time_frame[j]
                 phrase_chord = current_chord[j]
                 print('phrase_time:', phrase_time, '\n')
                 print('phrase_chord:', phrase_chord, '\n')
-                note_time = []
-                for k in range(len(phrase_chord)):
-                    if k == 0:
-                        temp_note_time = round(random.uniform(0.01, 0.8), 2)
-                    else:
-                        temp_note_time = round(random.uniform(0.01, (phrase_time-sum(note_time))/(len(phrase_chord))), 2)
-                    # if k == 3:
-                    #     temp_note_time = round(phrase_time - sum(note_time), 2)
-                    note_time.append(temp_note_time)
-                print('note_time:', note_time, '\n')
-                print('check:', round(sum(note_time), 2), phrase_time, round(sum(note_time), 2) <= phrase_time, '\n')
                 print('—————————————————— sending chords\n')
-                for m in range(len(note_time)):
-                    time.sleep(note_time[m])
-                    note = phrase_chord[m]
+                for k in range(len(phrase_chord)):
+                    note = phrase_chord[k]
                     vel = random.randint(30, 70)
-                    midiout.send_message(musx.note_on(m+1, note, vel))
-                    print(f'chord{m+1}, note: {note}, vel: {vel}, chan: {m+1}\n')
-                time.sleep(phrase_time - sum(note_time))
-                print(f'chord_last: {round(phrase_time - sum(note_time), 2)}\n')
-                for n in range(len(note_time)):
-                    midiout.send_message(musx.note_off(n+1, phrase_chord[n], vel))
+                    midiout.send_message(musx.note_on(k+1, note, vel))
+                    print(f'chord {j}, note: {note}, vel: {vel}, chan: {k+1}\n')
+                time.sleep(phrase_time)
+                for k in range(len(phrase_chord)):
+                    midiout.send_message(musx.note_off(k+1, phrase_chord[k], vel))
                 print('—————————————————— phrase finished\n')
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
     # ornament(total_section, total_time_frame, total_pool)
-    # pad(total_section, total_time_frame, total_chord)
+    pad(total_section, total_time_frame, total_chord)
 
 # Threading:
-ornaments = threading.Thread(target=ornament, args=[total_section, total_time_frame, total_pool])
-chord = threading.Thread(target=pad, args=[total_section, total_time_frame, total_chord])
+# ornaments = threading.Thread(target=ornament, args=[total_section, total_time_frame, total_pool])
+# chord = threading.Thread(target=pad, args=[total_section, total_time_frame, total_chord])
 
 # Call the variables:
-ornaments.start()
-chord.start()
+# ornaments.start()
+# chord.start()
