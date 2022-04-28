@@ -77,7 +77,7 @@ def ornament(total_section, total_time_frame, total_pool):
                     note_select = random.randint(6, 10)
                 else:
                     note_select = random.randint(8, 15)
-                print('note_select:', note_select)
+                print('note_select:', note_select, '\n')
                 pre_post_ratio = random.randint(10, 50) / 100
                 print('pre_post_ratio:', pre_post_ratio)
                 notes_ratio = round(1 - pre_post_ratio, 2)

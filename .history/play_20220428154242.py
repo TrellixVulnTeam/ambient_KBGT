@@ -77,7 +77,7 @@ def ornament(total_section, total_time_frame, total_pool):
                     note_select = random.randint(6, 10)
                 else:
                     note_select = random.randint(8, 15)
-                print('note_select:', note_select)
+                print('note_select:', note_select, '\n')
                 pre_post_ratio = random.randint(10, 50) / 100
                 print('pre_post_ratio:', pre_post_ratio)
                 notes_ratio = round(1 - pre_post_ratio, 2)
@@ -163,9 +163,9 @@ def pad(total_section, total_time_frame, total_chord):
         current_section = total_section[i]
         current_time_frame = total_time_frame[i]
         current_chord = total_chord[i]
-        print('current_section:', current_section)
-        print('current_time_frame:', current_time_frame, len(current_time_frame))
-        print('current_chord:', current_chord, len(current_chord))
+        print('current_section:', current_section, '\n')
+        print('current_time_frame:', current_time_frame, len(current_time_frame), '\n')
+        print('current_chord:', current_chord, len(current_chord), '\n')
         if current_section == 'intro' or current_section == 'outro':
             print('—————————————————— now playing: intro', '\n')
             for j in range(len(current_time_frame)):
