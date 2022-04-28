@@ -22,14 +22,25 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 4
-# chord_progression = main()[0] * 10
+# chord_progression = main()[0] * 4
 
-paragraph = random.randint(5, 8); print('\nparagraph:', str(paragraph))
-total_time = get_duration(paragraph, 10, 8, 12); print('total_paragraph:', str(total_time), str(sum(total_time)), '\n')
-section = get_section(total_time); print('section:', section[1], len(section[1]),'\n\ntotal_sec:', section[2], len(section[2]), '\n')
+# Get the structure of the piece:
+paragraph = random.randint(5, 8)
+time = get_duration(paragraph, 10, 8, 12)
+section = get_section(time)
 start = timer()
-total_section = get_flatten_list(section[1]); print('total_section:', total_section, len(total_section), '\n')
-total_time_frame = get_time_frame(section[2]); print('total_time_frame:', total_time_frame, len(total_time_frame), '\n')
-total_chord = get_chord(total_time_frame, chord_progression); print('total_chord:', total_chord, len(total_chord), '\n')
-total_pool = get_all_pool(total_time_frame, chord_progression); print('total_pool:', total_pool, len(total_pool))
-end = timer(); print('\nRunning time:', str(round((end - start), 2)) + 's\n')
+total_section = get_flatten_list(section[1])
+total_time_frame = get_time_frame(section[2])
+total_chord = get_chord(total_time_frame, chord_progression)
+total_pool = get_all_pool(total_time_frame, chord_progression)
+end = timer()
+
+print('\nparagraph:', str(paragraph))
+print('total_paragraph:', str(time), str(sum(time)), '\n')
+print('section:', section[1], len(section[1]),'\n\ntotal_sec:', section[2], len(section[2]), '\n')
+print('total_section:', total_section, len(total_section), '\n')
+print('total_time_frame:', total_time_frame, len(total_time_frame), '\n')
+print('total_chord:', total_chord, len(total_chord), '\n')
+print('total_pool:', total_pool, len(total_pool))
+print('\nRunning time:', str(round((end - start), 2)) + 's\n')
+
