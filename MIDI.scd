@@ -6,15 +6,15 @@ MIDIIn.connectAll;
 MIDIFunc.trace(true);
 
 SynthDef(\sin, {
-	arg freq, harm=4, amp=0.02, out=0, gate=1;
+	arg freq, harm=2, amp=0.02, out=0, gate=1;
 	var sig, env;
 	sig = {SinOsc.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
 	sig = sig * 4;
 	// sig = sig.softclip;
-	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
+	sig = RHPF.ar(sig, (200 * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(
-		Env.new([0, 0.3, 0.1, 0], [3, 3, 1], 'lin', releaseNode: 2),
+		Env.new([0, 0.15, 0.1, 0], [3, 3, 1], 'lin', releaseNode: 2),
 		gate: gate,
 		doneAction: 2
 	);
@@ -28,7 +28,7 @@ SynthDef(\sin_perc, {
 	sig = {SinOsc.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
 	sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
-	env = EnvGen.ar(Env.perc(0.02, 1, 0.7), doneAction:2);
+	env = EnvGen.ar(Env.perc(0.1, 2, 0.4), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
 }).add;
@@ -38,9 +38,9 @@ SynthDef(\saw, {
 	var sig, env;
 	sig = {Pulse.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
-	// sig = RLPF.ar(sig, (freq * harm).clip(20,20000), 0.5);
+	sig = RLPF.ar(sig, (800 * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(
-		Env.new([0, 0.3, 0.1, 0], [3, 3, 1.5], 'lin', releaseNode: 2),
+		Env.new([0, 0.7, 0.1, 0], [3, 3, 1.5], 'lin', releaseNode: 2),
 		gate: gate,
 		doneAction: 2
 	);
