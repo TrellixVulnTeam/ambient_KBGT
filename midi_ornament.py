@@ -88,10 +88,10 @@ def add_register(chromatic_pool):
         progression = chromatic_pool[i] * 2
         for j in range(int(len(progression) * 0.5)):
             note = progression[j]
-            pool_register_sublist.append(note + '5')
+            pool_register_sublist.append(note + '4')
         for k in range(int(len(progression) * 0.5), len(progression)):
             note = progression[k]
-            pool_register_sublist.append(note + '6')
+            pool_register_sublist.append(note + '5')
         # print('\npool_register_sublist: ' + str(pool_register_sublist) + '\n' + str(len(pool_register_sublist)))
         pool_register.append(pool_register_sublist)
         pool_register_sublist = []
