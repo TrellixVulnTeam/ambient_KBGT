@@ -36,8 +36,8 @@ bass_line = []
 for i in range(len(flatten_chord_progression)):
     temp_chord = flatten_chord_progression[i]
     bass_line.append(temp_chord[0])
-# print('\nbass_line: ' + str(bass_line))
-# print(len(bass_line))
+print('\nbass_line: ' + str(bass_line))
+print(len(bass_line))
 
 # Remove the bass line from chord progression:
 temp_chord = []
@@ -46,8 +46,8 @@ for i in range(len(flatten_chord_progression)):
     temp_chord = flatten_chord_progression[i]
     temp_chord.pop(0)
     bass_line_removed.append(temp_chord)
-# print('\nbass_line_removed: ' + str(bass_line_removed))
-# print(len(bass_line_removed)) 
+print('\nbass_line_removed: ' + str(bass_line_removed))
+print(len(bass_line_removed)) 
 
 # Convert into Music21 chord format - part 1:
 for j in range(len(bass_line_removed)):
