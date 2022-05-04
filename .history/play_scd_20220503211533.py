@@ -24,27 +24,57 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 4
-chord_progression = main()[0] * 4
+# chord_progression = main()[0] * 4
 
 # Get the structure of the piece:
-paragraph = random.randint(5, 8)
-timeline = get_duration(paragraph, 10, 8, 12)
-section = get_section(timeline)
-start = timer()
-total_section = get_flatten_list(section[1])
-total_time_frame = get_time_frame(section[2])
-total_chord = get_chord(total_time_frame, chord_progression)
-total_pool = get_all_pool(total_time_frame, chord_progression)
-end = timer()
+# paragraph = random.randint(5, 8)
+# timeline = get_duration(paragraph, 10, 8, 12)
+# section = get_section(timeline)
+# start = timer()
+# total_section = get_flatten_list(section[1])
+# total_time_frame = get_time_frame(section[2])
+# total_chord = get_chord(total_time_frame, chord_progression)
+# total_pool = get_all_pool(total_time_frame, chord_progression)
+# end = timer()
 
-print('\nparagraph:', str(paragraph))
-print('total_paragraph:', str(timeline), str(sum(timeline)), '\n')
-print('section:', section[1], len(section[1]),'\n\ntotal_sec:', section[2], len(section[2]), '\n')
-print('total_section:', total_section, len(total_section), '\n')
-print('total_time_frame:', total_time_frame, len(total_time_frame), '\n')
-print('total_chord:', total_chord, len(total_chord), '\n')
-print('total_pool:', total_pool, len(total_pool))
-print('\nRunning time:', str(round((end - start), 2)) + 's\n')
+section = [['intro', 'A', 'D', 'C', 'D', 'outro']]
+total_section = ['intro', 'A', 'D', 'C', 'D', 'outro']
+total_time_frame = [
+                    [2.7, 8.2, 7.0, 3.0, 3.1], 
+                    [17.7, 11.6, 5.8, 20.4, 7.8, 10.7, 12.9, 10.2, 10.5, 6.3, 5.3, 5.3, 12.5, 8.8, 11.0, 11.2], 
+                    [14.2, 8.8, 15.7, 5.3, 5.8, 10.6, 15.4, 8.2], 
+                    [4.0, 8.4, 7.3, 4.2, 5.6, 4.4, 5.8, 10.2, 6.9, 13.7, 6.2, 11.5, 13.3, 5.9, 14.3, 4.7, 5.6], 
+                    [9.4, 7.8, 6.9, 4.3, 12.8, 4.3, 5.8, 6.2, 4.0, 5.0, 10.0, 10.6, 8.4, 4.7, 13.3, 12.5], 
+                    # [6.8, 11.0, 4.2, 11.0, 9.6, 4.2, 6.9, 5.4, 7.3, 16.1, 7.5], 
+                    [7.6, 8.1, 9.5, 16.8]
+]
+total_chord = [
+                [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70], [48, 64, 67, 72]], 
+                [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70], [48, 64, 67, 72], [52, 68, 71, 76], [50, 69, 74, 77], [53, 69, 72, 76], [55, 65, 70, 74], [48, 67, 72, 76], [52, 64, 71, 80], [50, 65, 74, 81], [53, 64, 72, 81], [55, 62, 70, 77], [48, 60, 67, 76], [52, 56, 64, 71]], 
+                [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70], [48, 64, 67, 72], [52, 68, 71, 76], [50, 69, 74, 77], [53, 69, 72, 76]], 
+                [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70], [48, 64, 67, 72], [52, 68, 71, 76], [50, 69, 74, 77], [53, 69, 72, 76], [55, 65, 70, 74], [48, 67, 72, 76], [52, 64, 71, 80], [50, 65, 74, 81], [53, 64, 72, 81], [55, 62, 70, 77], [48, 60, 67, 76], [52, 56, 64, 71], [50, 57, 65, 74]], 
+                [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70], [48, 64, 67, 72], [52, 68, 71, 76], [50, 69, 74, 77], [53, 69, 72, 76], [55, 65, 70, 74], [48, 67, 72, 76], [52, 64, 71, 80], [50, 65, 74, 81], [53, 64, 72, 81], [55, 62, 70, 77], [48, 60, 67, 76], [52, 56, 64, 71]], 
+                # [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70], [48, 64, 67, 72], [52, 68, 71, 76], [50, 69, 74, 77], [53, 69, 72, 76], [55, 65, 70, 74], [48, 67, 72, 76], [52, 64, 71, 80]],
+                [[52, 64, 68, 71], [50, 65, 69, 74], [53, 64, 69, 72], [55, 62, 65, 70]]
+]
+total_pool = [
+                [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81]], 
+                [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76]], 
+                [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76]], 
+                [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81]], 
+                [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76]], 
+                # [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76]], 
+                [[60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81], [67, 69, 71, 62, 64, 79, 81, 83, 74, 76], [60, 62, 64, 67, 69, 72, 74, 76, 79, 81]]
+]
+
+# print('\nparagraph:', str(paragraph))
+# print('total_paragraph:', str(timeline), str(sum(timeline)), '\n')
+# print('section:', section[1], len(section[1]),'\n\ntotal_sec:', section[2], len(section[2]), '\n')
+# print('total_section:', total_section, len(total_section), '\n')
+# print('total_time_frame:', total_time_frame, len(total_time_frame), '\n')
+# print('total_chord:', total_chord, len(total_chord), '\n')
+# print('total_pool:', total_pool, len(total_pool))
+# print('\nRunning time:', str(round((end - start), 2)) + 's\n')
 
 def ornament(total_section, total_time_frame, total_pool):
     for i in range(len(total_section)):
@@ -144,7 +174,7 @@ def ornament(total_section, total_time_frame, total_pool):
                     note_time.append(temp_note_time)
                 print('note_time:', note_time)
                 print('check:', round((sum(note_time)+ pre_time + post_time), 2), phrase_time, '\n')
-                print('—————————————————— Sending notes\n')
+                print('—————————————————— sending notes\n')
                 time.sleep(pre_time)
                 print(f'pre_time: {pre_time}')
                 for m in range(note_select):
@@ -167,46 +197,32 @@ def pad(total_section, total_time_frame, total_chord):
         print('current_time_frame:', current_time_frame, len(current_time_frame))
         print('current_chord:', current_chord, len(current_chord), '\n')
         if current_section == 'intro' or current_section == 'outro':
-            print('—————————————————— now playing:', current_section, '\n')
+            print('—————————————————— now playing: intro', '\n')
             for j in range(len(current_time_frame)):
                 phrase_time = current_time_frame[j]
                 phrase_chord = current_chord[j]
                 print('phrase_time:', phrase_time)
                 print('phrase_chord:', phrase_chord)
                 note_time = []
-                if phrase_time < 5:
-                    note_select = random.randint(3, 6)
-                elif 5 <= phrase_time < 15:
-                    note_select = random.randint(5, 10)
-                else:
-                    note_select = random.randint(8, 15)
-                for k in range(note_select):
+                for k in range(len(phrase_chord)):
                     if k == 0:
-                        temp_note_time = round(random.uniform(0.3, 0.8), 2)
+                        temp_note_time = round(random.uniform(0.01, 0.8), 2)
                     else:
-                        temp_note_time = round(random.uniform(0.3, (phrase_time-sum(note_time))/(note_select)), 2)
+                        temp_note_time = round(random.uniform(0.01, (phrase_time-sum(note_time))/(len(phrase_chord))), 2)
                     note_time.append(temp_note_time)
                 print('note_time:', note_time)
                 print('check:', round(sum(note_time), 2), phrase_time, round(sum(note_time), 2) <= phrase_time, '\n')
                 print('—————————————————— sending chords\n')
-                temp_note = []
                 for m in range(len(note_time)):
                     time.sleep(note_time[m])
-                    note = phrase_chord[random.randint(0, 3)]
-                    if m == 0:
-                        previous_note = note
-                    while note == previous_note:
-                        note = phrase_chord[random.randint(0, 3)]
-                    previous_note = note
-                    temp_note.append(note)
+                    note = phrase_chord[m]
                     vel = random.randint(30, 70)
                     midiout.send_message(musx.note_on(m+1, note, vel))
                     print(f'chord {m+1}, note: {note}, vel: {vel}, chan: {m+1}')
                 time.sleep(phrase_time - sum(note_time))
                 print(f'chord_last: {round(phrase_time - sum(note_time), 2)}\n')
-                for n in range(len(temp_note)):
-                    midiout.send_message(musx.note_off(n+1, temp_note[n], vel))
-                temp_note = []
+                for n in range(len(note_time)):
+                    midiout.send_message(musx.note_off(n+1, phrase_chord[n], vel))
                 print('—————————————————— next phrase (chord) ——————————————————\n') 
             print('—————————————————— next section ——————————————————\n')
         if current_section == 'A' or current_section == 'B':
@@ -272,8 +288,15 @@ def pad(total_section, total_time_frame, total_chord):
 
 # Threading:
 ornaments = threading.Thread(target=ornament, args=[total_section, total_time_frame, total_pool])
+ornaments_2 = threading.Thread(target=ornament, args=[total_section, total_time_frame, total_pool])
+ornaments_3 = threading.Thread(target=ornament, args=[total_section, total_time_frame, total_pool])
 chord = threading.Thread(target=pad, args=[total_section, total_time_frame, total_chord])
+# chord_2 = threading.Thread(target=pad, args=[total_section, total_time_frame, total_chord])
+
 
 # Call the variables:
 ornaments.start()
+ornaments_2.start()
+ornaments_3.start()
 chord.start()
+# chord_2.start()

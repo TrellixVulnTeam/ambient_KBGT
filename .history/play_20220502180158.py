@@ -6,7 +6,7 @@ import threading
 from timeit import default_timer as timer
 from musx import keynum
 from main_multi_solution import main
-from structure_macro import get_duration, get_section
+from structure_macro import get_duration, get_section, section_namer
 from structure_section import get_flatten_list, get_time_frame, get_chord, get_all_pool
 
 # MIDI port set up:
@@ -24,7 +24,7 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 4
-chord_progression = main()[0] * 4
+# chord_progression = main()[0] * 4
 
 # Get the structure of the piece:
 paragraph = random.randint(5, 8)
@@ -60,103 +60,103 @@ def ornament(total_section, total_time_frame, total_pool):
             time.sleep(sum(current_time_frame))
             print('—————————————————— next section ——————————————————\n')
             continue
-        if current_section == 'A' or current_section == 'B':
-            print('—————————————————— now playing:', current_section, '\n')
-            for j in range(len(current_time_frame)):
-                phrase_time = current_time_frame[j]
-                phrase_pool = current_pool[j]
-                print('phrase_time:', phrase_time)
-                print('phrase_pool:', phrase_pool)
-                if phrase_time < 5:
-                    note_select = random.randint(2, 4)
-                elif 5 <= phrase_time < 10:
-                    note_select = random.randint(2, 5)
-                elif 10 <= phrase_time < 15:
-                    note_select = random.randint(3, 7)
-                elif 15 <= phrase_time < 20:
-                    note_select = random.randint(6, 10)
-                else:
-                    note_select = random.randint(8, 15)
-                print('note_select:', note_select)
-                pre_post_ratio = random.randint(10, 50) / 100
-                print('pre_post_ratio:', pre_post_ratio)
-                notes_ratio = round(1 - pre_post_ratio, 2)
-                print('notes_ratio:', notes_ratio)
-                pre_time = round(phrase_time * round(random.uniform(0.01, pre_post_ratio*0.7), 2), 2)
-                print('pre_time:', pre_time)
-                post_time = round(phrase_time * pre_post_ratio - pre_time, 2)
-                print('post_time:', post_time)
-                note_span = phrase_time * notes_ratio
-                note_time = []
-                for k in range(note_select):
-                    temp_note_time = round(random.uniform(0.01, (note_span-sum(note_time))/(note_select-k)), 2)
-                    if k == note_select-1:
-                        temp_note_time = round(note_span - sum(note_time), 2)
-                    note_time.append(temp_note_time)
-                print('note_time:', note_time)
-                print('check:', round((sum(note_time) + pre_time + post_time), 2), phrase_time, '\n')
-                print('—————————————————— sending notes\n')
-                time.sleep(pre_time)
-                print(f'pre_time: {pre_time}')
-                for m in range(note_select):
-                    note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
-                    vel = random.randint(30, 70)
-                    midiout.send_message(musx.note_on(6, note, vel))
-                    print(f'melody {m+1}, note: {note}, vel: {vel}')
-                    time.sleep(note_time[m])
-                    midiout.send_message(musx.note_off(6, note, vel))
-                time.sleep(post_time)
-                print(f'post_time: {post_time}\n')
-                print('—————————————————— next phrase (melody) ——————————————————\n') 
-            print('—————————————————— next section ——————————————————\n')
-        if current_section == 'C' or current_section == 'D':
-            print('—————————————————— now playing:', current_section, '\n')
-            for j in range(len(current_time_frame)):
-                phrase_time = current_time_frame[j]
-                phrase_pool = current_pool[j]
-                print('phrase_time:', phrase_time)
-                print('phrase_pool:', phrase_pool)
-                if phrase_time < 5:
-                    note_select = random.randint(3, 6)
-                elif 5 <= phrase_time < 10:
-                    note_select = random.randint(4, 7)
-                elif 10 <= phrase_time < 15:
-                    note_select = random.randint(5, 10)
-                elif 15 <= phrase_time < 20:
-                    note_select = random.randint(7, 15)
-                else:
-                    note_select = random.randint(10, 25)
-                print('note_select:', note_select)
-                pre_post_ratio = random.randint(10, 50) / 100
-                print('pre_post_ratio:', pre_post_ratio)
-                notes_ratio = round(1 - pre_post_ratio, 2)
-                print('notes_ratio:', notes_ratio)
-                pre_time = round(phrase_time * round(random.uniform(0.01, pre_post_ratio*0.7), 2), 2)
-                print('pre_time:', pre_time)
-                post_time = round(phrase_time * pre_post_ratio - pre_time, 2)
-                print('post_time:', post_time)
-                note_span = phrase_time * notes_ratio
-                note_time = []
-                for k in range(note_select):
-                    temp_note_time = round(random.uniform(0.01, (note_span-sum(note_time))/(note_select-k)), 2)
-                    if k == note_select-1:
-                        temp_note_time = round(note_span - sum(note_time), 2)
-                    note_time.append(temp_note_time)
-                print('note_time:', note_time)
-                print('check:', round((sum(note_time)+ pre_time + post_time), 2), phrase_time, '\n')
-                print('—————————————————— Sending notes\n')
-                time.sleep(pre_time)
-                print(f'pre_time: {pre_time}')
-                for m in range(note_select):
-                    note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
-                    vel = random.randint(30, 70)
-                    midiout.send_message(musx.note_on(7, note, vel))
-                    print(f'melody {m+1}, note: {note}, vel: {vel}')
-                    time.sleep(note_time[m])
-                time.sleep(post_time)
-                print(f'post_time: {post_time}\n')
-                print('—————————————————— next phrase (melody) ——————————————————\n') 
-            print('—————————————————— next section ——————————————————\n')
+        # if current_section == 'A' or current_section == 'B':
+        #     print('—————————————————— now playing:', current_section, '\n')
+        #     for j in range(len(current_time_frame)):
+        #         phrase_time = current_time_frame[j]
+        #         phrase_pool = current_pool[j]
+        #         print('phrase_time:', phrase_time)
+        #         print('phrase_pool:', phrase_pool)
+        #         if phrase_time < 5:
+        #             note_select = random.randint(2, 4)
+        #         elif 5 <= phrase_time < 10:
+        #             note_select = random.randint(2, 5)
+        #         elif 10 <= phrase_time < 15:
+        #             note_select = random.randint(3, 7)
+        #         elif 15 <= phrase_time < 20:
+        #             note_select = random.randint(6, 10)
+        #         else:
+        #             note_select = random.randint(8, 15)
+        #         print('note_select:', note_select)
+        #         pre_post_ratio = random.randint(10, 50) / 100
+        #         print('pre_post_ratio:', pre_post_ratio)
+        #         notes_ratio = round(1 - pre_post_ratio, 2)
+        #         print('notes_ratio:', notes_ratio)
+        #         pre_time = round(phrase_time * round(random.uniform(0.01, pre_post_ratio*0.7), 2), 2)
+        #         print('pre_time:', pre_time)
+        #         post_time = round(phrase_time * pre_post_ratio - pre_time, 2)
+        #         print('post_time:', post_time)
+        #         note_span = phrase_time * notes_ratio
+        #         note_time = []
+        #         for k in range(note_select):
+        #             temp_note_time = round(random.uniform(0.01, (note_span-sum(note_time))/(note_select-k)), 2)
+        #             if k == note_select-1:
+        #                 temp_note_time = round(note_span - sum(note_time), 2)
+        #             note_time.append(temp_note_time)
+        #         print('note_time:', note_time)
+        #         print('check:', round((sum(note_time) + pre_time + post_time), 2), phrase_time, '\n')
+        #         print('—————————————————— sending notes\n')
+        #         time.sleep(pre_time)
+        #         print(f'pre_time: {pre_time}')
+        #         for m in range(note_select):
+        #             note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
+        #             vel = random.randint(30, 70)
+        #             midiout.send_message(musx.note_on(6, note, vel))
+        #             print(f'melody {m+1}, note: {note}, vel: {vel}')
+        #             time.sleep(note_time[m])
+        #             midiout.send_message(musx.note_off(6, note, vel))
+        #         time.sleep(post_time)
+        #         print(f'post_time: {post_time}\n')
+        #         print('—————————————————— next phrase (melody) ——————————————————\n') 
+        #     print('—————————————————— next section ——————————————————\n')
+        # if current_section == 'C' or current_section == 'D':
+        #     print('—————————————————— now playing:', current_section, '\n')
+        #     for j in range(len(current_time_frame)):
+        #         phrase_time = current_time_frame[j]
+        #         phrase_pool = current_pool[j]
+        #         print('phrase_time:', phrase_time)
+        #         print('phrase_pool:', phrase_pool)
+        #         if phrase_time < 5:
+        #             note_select = random.randint(3, 6)
+        #         elif 5 <= phrase_time < 10:
+        #             note_select = random.randint(4, 7)
+        #         elif 10 <= phrase_time < 15:
+        #             note_select = random.randint(5, 10)
+        #         elif 15 <= phrase_time < 20:
+        #             note_select = random.randint(7, 15)
+        #         else:
+        #             note_select = random.randint(10, 25)
+        #         print('note_select:', note_select)
+        #         pre_post_ratio = random.randint(10, 50) / 100
+        #         print('pre_post_ratio:', pre_post_ratio)
+        #         notes_ratio = round(1 - pre_post_ratio, 2)
+        #         print('notes_ratio:', notes_ratio)
+        #         pre_time = round(phrase_time * round(random.uniform(0.01, pre_post_ratio*0.7), 2), 2)
+        #         print('pre_time:', pre_time)
+        #         post_time = round(phrase_time * pre_post_ratio - pre_time, 2)
+        #         print('post_time:', post_time)
+        #         note_span = phrase_time * notes_ratio
+        #         note_time = []
+        #         for k in range(note_select):
+        #             temp_note_time = round(random.uniform(0.01, (note_span-sum(note_time))/(note_select-k)), 2)
+        #             if k == note_select-1:
+        #                 temp_note_time = round(note_span - sum(note_time), 2)
+        #             note_time.append(temp_note_time)
+        #         print('note_time:', note_time)
+        #         print('check:', round((sum(note_time)+ pre_time + post_time), 2), phrase_time, '\n')
+        #         print('—————————————————— Sending notes\n')
+        #         time.sleep(pre_time)
+        #         print(f'pre_time: {pre_time}')
+        #         for m in range(note_select):
+        #             note = random.choices(phrase_pool, weights=(1, 1, 1, 1, 1, 0.1, 0.1, 0.1, 0.1, 0.1), k=1)[0]
+        #             vel = random.randint(30, 70)
+        #             midiout.send_message(musx.note_on(7, note, vel))
+        #             print(f'melody {m+1}, note: {note}, vel: {vel}')
+        #             time.sleep(note_time[m])
+        #         time.sleep(post_time)
+        #         print(f'post_time: {post_time}\n')
+        #         print('—————————————————— next phrase (melody) ——————————————————\n') 
+        #     print('—————————————————— next section ——————————————————\n')
 
 def pad(total_section, total_time_frame, total_chord):
     for i in range(len(total_section)):

@@ -6,7 +6,7 @@ import threading
 from timeit import default_timer as timer
 from musx import keynum
 from main_multi_solution import main
-from structure_macro import get_duration, get_section
+from structure_macro import get_duration, get_section, section_namer
 from structure_section import get_flatten_list, get_time_frame, get_chord, get_all_pool
 
 # MIDI port set up:

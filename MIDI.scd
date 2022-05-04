@@ -6,7 +6,7 @@ MIDIIn.connectAll;
 MIDIFunc.trace(true);
 
 SynthDef(\sin, {
-	arg freq, harm=2, amp=0.02, out=0, gate=1;
+	arg freq, harm=2, amp=0.01, out=0, gate=1;
 	var sig, env;
 	sig = {SinOsc.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
@@ -14,7 +14,7 @@ SynthDef(\sin, {
 	// sig = sig.softclip;
 	sig = RHPF.ar(sig, (200 * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(
-		Env.new([0, 0.15, 0.1, 0], [3, 3, 1], 'lin', releaseNode: 2),
+		Env.new([0, 0.05, 0.1, 0], [2, 3, 1], 'lin', releaseNode: 2),
 		gate: gate,
 		doneAction: 2
 	);
@@ -34,13 +34,13 @@ SynthDef(\sin_perc, {
 }).add;
 
 SynthDef(\saw, {
-	arg freq=440, harm=4, amp=0.4, out=0, gate=1;
+	arg freq=440, harm=4, amp=0.1, out=0, gate=1;
 	var sig, env;
 	sig = {Pulse.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
 	sig = Splay.ar(sig);
 	sig = RLPF.ar(sig, (600 * harm).clip(20,20000), 0.5);
 	env = EnvGen.ar(
-		Env.new([0, 0.7, 0.1, 0], [3, 3, 1.5], 'lin', releaseNode: 2),
+		Env.new([0, 0.8, 0.1, 0], [0.5, 3, 1.5], 'lin', releaseNode: 2),
 		gate: gate,
 		doneAction: 2
 	);
@@ -49,12 +49,12 @@ SynthDef(\saw, {
 }).add;
 
 SynthDef(\saw_perc, {
-	arg freq=440, harm=4, amp=0.1, out=0;
+	arg freq=440, harm=4, amp=1, out=0;
 	var sig, env;
-	sig = {LFSaw.ar(freq * Rand(-0.2, 0.2).midiratio)}!2;
+	sig = {LFSaw.ar(freq * Rand(-0.2, 0.2).midiratio)}!4;
 	sig = Splay.ar(sig);
 	sig = RLPF.ar(sig, (700 * harm).clip(20,20000), 0.5);
-	env = EnvGen.ar(Env.perc(0.3, 2, 0.3), doneAction:2);
+	env = EnvGen.ar(Env.perc(0.1, 2, 0.8), doneAction:2);
 	sig = sig * env * amp;
 	Out.ar(out, sig);
 }).add;

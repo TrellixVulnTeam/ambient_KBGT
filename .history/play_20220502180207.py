@@ -6,7 +6,7 @@ import threading
 from timeit import default_timer as timer
 from musx import keynum
 from main_multi_solution import main
-from structure_macro import get_duration, get_section
+from structure_macro import get_duration, get_section, section_namer
 from structure_section import get_flatten_list, get_time_frame, get_chord, get_all_pool
 
 # MIDI port set up:
@@ -24,7 +24,7 @@ chord_progression = [
     [['c4', 'g4', 'bb4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']], 
     [['c3', 'bb3', 'g4', 'eb5'], ['c3', 'd4', 'c5', 'g5'], ['g3', 'd4', 'b4', 'g5']]
 ] * 4
-chord_progression = main()[0] * 4
+# chord_progression = main()[0] * 4
 
 # Get the structure of the piece:
 paragraph = random.randint(5, 8)
